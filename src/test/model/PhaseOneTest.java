@@ -20,7 +20,7 @@ public class PhaseOneTest {
 
     @Test
     public void testCalculateWeight(){
-        testMolecule.calculateWeight();
+        testMolecule.calculatePhaseOneWeight();
         assertEquals(1, testMolecule.getMolecularWeight());
     }
 }

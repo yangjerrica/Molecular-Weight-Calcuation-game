@@ -1,13 +1,14 @@
 package model;
 
-public class PhaseOne extends Phase{
+public class PhaseOne extends Phase {
 
     public PhaseOne() {
         super();
-        list= new String[]{"CuSO4", "C6H6", "NO3", "N2O4", "HCN", "SF6", "IF7", "H2SO4"};
+        list = new String[]{"CuSO4", "C6H6", "NO3", "N2O4", "HCN", "SF6", "IF7", "H2SO4"};
     }
 
-    public void calculateWeight() {
+    public void calculatePhaseOneWeight() {
+
         String mole = getRandomMolecule();
 
         if (mole.contains("CuSO4")) {
@@ -18,7 +19,7 @@ public class PhaseOne extends Phase{
             molecularWeight = 62;
         } else if (mole.contains("N2O4")) {
             molecularWeight = 92;
-        } else if (mole.contains("HCN") ){
+        } else if (mole.contains("HCN")) {
             molecularWeight = 27;
         } else if (mole.contains("SF6")) {
             molecularWeight = 146;
