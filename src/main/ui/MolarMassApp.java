@@ -5,26 +5,27 @@ import model.*;
 import java.util.Scanner;
 
 
-public class MolecularWeightApp {
+public class MolarMassApp {
 
-    private  randomMolecule;
+    private MolecularQuiz molecularQuiz;
     private Scanner input = new Scanner(System.in);
     private Dog dog;
     private Cat cat;
     private Quokka quokka;
 
-    public MolecularWeightApp() {
+    public MolarMassApp() {
         getQuestions();
+        molecularQuiz = new MolecularQuiz();
     }
 
     private void getQuestions() {
-        System.out.println("Please enter the molecular weight of the molecule: " + randomMolecule.getRandomMolecule());
+        System.out.println("Please enter the molecular weight of the molecule: " + molecularQuiz.getRandomMolecule());
         correctAnswer();
     }
 
     private void correctAnswer() {
-        randomMolecule = new PhaseOne();
-        if (randomMolecule.ca() == randomMolecule.getMolecularWeight()) {
+        Molecule randomMolecule = molecularQuiz.getRandomMolecule();
+        if (String.valueOf(randomMolecule.getMolarMass()) == input.next()) {
             System.out.println("Congratulations! Please pick a treat from below!");
             pickTreat();
         } else {

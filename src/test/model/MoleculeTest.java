@@ -10,17 +10,12 @@ public class MoleculeTest {
 
     @BeforeEach
     void runBefore() {
-        testMolecule = new Molecule();
+        testMolecule = new Molecule("H2O");
     }
 
     @Test
     public void testConstructor(){
-        assertEquals(0, testMolecule.getMolecularWeight());
+        assertEquals(18, testMolecule.getMolarMass());
     }
 
-    @Test
-    public void testCalculateWeight(){
-        testMolecule.calculateMolecularWeight();
-        assertEquals(1, testMolecule.getMolecularWeight());
-    }
 }
