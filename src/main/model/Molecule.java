@@ -1,22 +1,22 @@
 package model;
 
-import java.util.Random;
 import java.util.regex.Pattern;
 
 public class Molecule {
     private int molarMass;
     private String formula;
 
-
+    //EFFECTS: initialize the molar mass with 0, gets the formula, and calculates the molecular mass
     public Molecule(String formula) {
         molarMass = 0;
         this.formula = formula;
-        calculateMolecularWeight();
+        calculateMolecularMass();
     }
 
-    private void calculateMolecularWeight() {
+    //MODIFIES: this
+    //EFFECTS: calculates the molecular mass of the given molecule
+    private void calculateMolecularMass() {
 
-        char[] mole = formula.toCharArray();
         int findNum;
 
         for (int i = 0; i < formula.length(); i++) {
@@ -39,6 +39,9 @@ public class Molecule {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: A helper function of the calculateMolecularMass, inserts the element and number(numElements) found in
+    // calculateMolecularMass and does the math
     public void computeMass(char element, int numElements) {
         switch (element) {
             case 'C':
@@ -62,6 +65,8 @@ public class Molecule {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: checks whether the String is a number
     // I got this from: https://www.baeldung.com/java-check-string-number
     public boolean isNumeric(String strNum) {
 
@@ -72,11 +77,13 @@ public class Molecule {
 
     }
 
+    //EFFECTS: returns the molarMass
     public int getMolarMass() {
         return molarMass;
     }
 
 
+    //EFFECTS: returns the formula
     public String getFormula() {
         return formula;
     }

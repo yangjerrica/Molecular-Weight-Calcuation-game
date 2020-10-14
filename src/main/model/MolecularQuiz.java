@@ -10,6 +10,7 @@ public class MolecularQuiz {
     public List<Molecule> molecules;
     public ArrayList<String> list;
 
+    //EFFECTS: gives a random molecule provided from the list
     public MolecularQuiz() {
         random = new Random();
         list = new ArrayList<>(Arrays.asList("CH3COOH",  "C2H5OH", "C4H8", "HF",
@@ -22,7 +23,10 @@ public class MolecularQuiz {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: returns a random molecule from the list of molecules
     public Molecule getRandomMolecule() {
+
         Molecule randomMolecule;
         int moleNum = random.nextInt(molecules.size());
         randomMolecule = molecules.get(moleNum);
