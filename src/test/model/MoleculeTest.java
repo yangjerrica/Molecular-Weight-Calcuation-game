@@ -10,6 +10,7 @@ public class MoleculeTest {
     private Molecule testMolecule2;
     private Molecule testMolecule3;
     private Molecule testMolecule4;
+    private Molecule testMolecule5;
 
     @BeforeEach
     void runBefore() {
@@ -17,6 +18,8 @@ public class MoleculeTest {
         testMolecule2 = new Molecule("CH3COOH");
         testMolecule3 = new Molecule("NO");
         testMolecule4 = new Molecule("SF6");
+        testMolecule5 = new Molecule("Br2");
+
 
     }
 
@@ -26,6 +29,7 @@ public class MoleculeTest {
         assertEquals(60,testMolecule2.getMolarMass());
         assertEquals(30, testMolecule3.getMolarMass());
         assertEquals(146, testMolecule4.getMolarMass());
+        assertEquals(0, testMolecule5.getMolarMass());
 
         assertEquals("H2O", testMolecule.getFormula());
         assertEquals("NO",testMolecule3.getFormula());

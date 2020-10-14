@@ -27,6 +27,8 @@ public class CatTest {
         assertEquals(20,testCat.getPoints());
         testCat.reward("leaf");
         assertEquals(30, testCat.getPoints());
+        testCat.reward("tofu");
+        assertEquals(30, testCat.getPoints());
     }
 
     @Test

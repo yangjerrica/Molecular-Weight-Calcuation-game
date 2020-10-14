@@ -2,32 +2,17 @@ package model;
 
 public class Dog extends Animals {
 
-    private final int getApple = 30;
-    private final int getBone = 25;
-    private final int getCarrot = 15;
-    private final int getFish = 15;
-    private final int getLeaf = 5;
-
-    //EFFECTS: initialize the Dog with zero points
+    //EFFECTS: initialize the Dog with zero points and gives different points to each treat according to dog
     public Dog() {
         super();
+        getApple = 30;
+        getBone = 25;
+        getCarrot = 15;
+        getFish = 15;
+        getLeaf = 5;
+
     }
 
-    //MODIFIES: this
-    //EFFECTS: shows the total points, adding the rewarding points
-    public void reward(String treat) {
-        if (treat.equals(apple)) {
-            points += getApple;
-        } else if (treat.equals(bone)) {
-            points += getBone;
-        } else if (treat.equals(carrot)) {
-            points += getCarrot;
-        } else if (treat.equals(fish)) {
-            points += getFish;
-        } else if (treat.equals(leaf)) {
-            points += getLeaf;
-        }
-    }
 
 
 

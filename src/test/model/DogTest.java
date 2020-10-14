@@ -27,6 +27,8 @@ public class DogTest {
         assertEquals(55,testDog.getPoints());
         testDog.reward("leaf");
         assertEquals(60,testDog.getPoints());
+        testDog.reward("tofu");
+        assertEquals(60, testDog.getPoints());
 
     }
 

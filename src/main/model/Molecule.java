@@ -39,6 +39,7 @@ public class Molecule {
         }
     }
 
+    //REQUIRES: will not calculate atoms other than C, N, O, H, S, F
     //MODIFIES: this
     //EFFECTS: A helper function of the calculateMolecularMass, inserts the element and number(numElements) found in
     // calculateMolecularMass and does the math
@@ -61,6 +62,8 @@ public class Molecule {
                 break;
             case 'F':
                 molarMass += numElements * 19;
+                break;
+            default:
                 break;
         }
     }

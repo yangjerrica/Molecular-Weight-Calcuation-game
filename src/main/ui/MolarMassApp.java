@@ -54,14 +54,17 @@ public class MolarMassApp {
 
 
     //MODIFIES:this
-    //EFFECTS: starts giving treats in the order of dog->cat->quokka
+    //EFFECTS: starts giving treats in the order of dog -> cat -> quokka
     private void giveTreat() {
         if (dog.getPoints() < 100) {
-            dogTreat();
+            System.out.println("Please choose a treat for the Dog: apple, bone, carrot, fish, leaf");
+            selectTreat(dog);
         } else if (cat.getPoints() < 100) {
-            catTreat();
+            System.out.println("Please choose a treat for the Cat: apple, bone, carrot, fish, leaf");
+            selectTreat(cat);
         } else if (quokka.getPoints() < 100) {
-            quokkaTreat();
+            System.out.println("Please choose a treat for the Cat: apple, bone, carrot, fish, leaf");
+            selectTreat(quokka);
         }
     }
 
@@ -69,65 +72,34 @@ public class MolarMassApp {
     //EFFECTS: if the points of the Dog doesn't increase, the user will have to re-enter a treat that is in the list.
     // If it increases, then it will print out the current satisfaction percentage. If the percentage >=100, it will
     // show that Dog is satisfied.
-    private void dogTreat() {
-        System.out.println("Please choose a treat for the Dog: apple, bone, carrot, fish, leaf");
+    private void selectTreat(Animals animals) {
         String treat = input.next();
         int currentPoints = dog.getPoints();
-        dog.reward(treat);
-        if (currentPoints == dog.getPoints()) {
+        animals.reward(treat);
+        while (currentPoints == animals.getPoints()) {
             System.out.println("Please choose a treat in the list above.");
             String treat2 = input.next();
-            dog.reward(treat2);
-        } else {
-            dog.printPoints();
+            animals.reward(treat2);
         }
-        if (dog.getPoints() < 100) {
-            System.out.println("The current satisfaction is " + dog.getPoints() + " %");
+        animals.printPoints();
+        if (animals == quokka) {
+            quokkaTreat();
         } else {
-            System.out.println("You have reached 100% satisfaction. Satisfied!");
+            if (animals.getPoints() < 100) {
+                System.out.println("The current satisfaction is " + animals.getPoints() + " %");
+            } else {
+                System.out.println("You have reached 100% satisfaction. Satisfied!");
+            }
         }
 
     }
 
-    //MODIFIES: this
-    //EFFECTS: if the points of the Cat doesn't increase, the user will have to re-enter a treat that is in the list.
-    // If it increases, then it will print out the current satisfaction percentage. If the percentage >=100, it will
-    // show that Cat is satisfied.
-    private void catTreat() {
-        System.out.println("Please choose a treat for the Cat: apple, bone, carrot, fish, leaf");
-        String treat = input.next();
-        int currentPoints = cat.getPoints();
-        cat.reward(treat);
-        if (currentPoints == cat.getPoints()) {
-            System.out.println("Please choose a treat in the list above.");
-            String treat2 = input.next();
-            cat.reward(treat2);
-        } else {
-            cat.printPoints();
-        }
-        if (cat.getPoints() < 100) {
-            System.out.println("The current satisfaction is " + cat.getPoints() + " %");
-        } else {
-            System.out.println("You have reached 100% satisfaction. Satisfied!");
-        }
-    }
 
     //MODIFIES: this
-    //EFFECTS: if the points of the Quokka doesn't increase, the user will have to re-enter a treat that is in the list.
-    // If it increases, then it will print out the current satisfaction percentage. If the percentage >=100, it will
-    // show that Quokka is satisfied and all the other animals are satisfied. Last, it will stop the game.
+    //EFFECTS: If it increases, then it will print out the current satisfaction percentage. If the percentage >=100,
+    // it will show that Quokka is satisfied and all the other animals are satisfied. Last, it will stop the game.
     private void quokkaTreat() {
-        System.out.println("Please choose a treat for the Quokka: apple, bone, carrot, fish, leaf");
-        String treat = input.next();
-        int currentPoints = quokka.getPoints();
-        quokka.reward(treat);
-        if (currentPoints == quokka.getPoints()) {
-            System.out.println("Please choose a treat in the list above.");
-            String treat2 = input.next();
-            quokka.reward(treat2);
-        } else {
-            quokka.printPoints();
-        }
+
         if (quokka.getPoints() < 100) {
             System.out.println("The current satisfaction is " + quokka.getPoints() + " %");
         } else {

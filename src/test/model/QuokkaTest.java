@@ -27,6 +27,8 @@ public class QuokkaTest {
         assertEquals(35,testQuokka.getPoints());
         testQuokka.reward("leaf");
         assertEquals(70, testQuokka.getPoints());
+        testQuokka.reward("tofu");
+        assertEquals(70, testQuokka.getPoints());
     }
 
     @Test
