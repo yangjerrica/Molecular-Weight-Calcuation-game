@@ -8,22 +8,26 @@ public abstract class Animals {
     protected String fish = "fish";
     protected String leaf = "leaf";
     protected int points;
-    protected int rewardPoints;
 
+    //EFFECTS: initialize the animal with zero points
     public Animals() {
         this.points = 0;
     }
 
-    public int getPoints() {
-        return points;
-    }
-
+    //MODIFIES: this
+    //EFFECTS: if the points are less than a hundred, then it returns the current value; otherwise
+    //         returns "Satisfied!"
     public String printPoints() {
         if (points < 100) {
             String pointsStr = "The current satisfaction is " + String.valueOf(points) + " %";
-            System.out.println(pointsStr);
             return pointsStr;
         }
-        return "Satisfied!";
+        String satisfiedStr = "You have reached 100% satisfaction. Satisfied!";
+        return satisfiedStr;
+    }
+
+    //EFFECTS: returns the current satisfaction points
+    public int getPoints() {
+        return points;
     }
 }

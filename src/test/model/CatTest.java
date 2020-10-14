@@ -20,7 +20,7 @@ public class CatTest {
     }
 
     @Test
-    void testAward() {
+    void testReward() {
         testCat.reward("apple");
         assertEquals(15,testCat.getPoints());
         testCat.reward("bone");
@@ -39,11 +39,13 @@ public class CatTest {
     @Test
     void testPrintPointsSatisfied() {
         testCat.reward("fish");
-        testCat.reward("fish");
+        testCat.reward("carrot");
         testCat.reward("apple");
         testCat.reward("bone");
+        testCat.reward("leaf");
+        testCat.reward("fish");
 
-        assertEquals(100, testCat.getPoints());
-        assertEquals("Satisfied!", testCat.printPoints());
+        assertEquals(130, testCat.getPoints());
+        assertEquals("You have reached 100% satisfaction. Satisfied!", testCat.printPoints());
     }
 }

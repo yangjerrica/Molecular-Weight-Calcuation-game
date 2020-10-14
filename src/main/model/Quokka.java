@@ -8,7 +8,8 @@ public class Quokka extends Animals {
     private int getFish = 5;
     private int getLeaf = 35;
 
-    public Quokka(){
+    //EFFECT: initialize the Quokka with zero points
+    public Quokka() {
         super();
     }
 
@@ -27,5 +28,6 @@ public class Quokka extends Animals {
             points += getLeaf;
         }
     }
+
 
 }

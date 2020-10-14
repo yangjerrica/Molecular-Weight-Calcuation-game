@@ -20,11 +20,12 @@ public class DogTest {
     }
 
     @Test
-    void testAward() {
+    void testReward() {
         testDog.reward("apple");
         assertEquals(30,testDog.getPoints());
         testDog.reward("bone");
         assertEquals(55,testDog.getPoints());
+
     }
 
     @Test
@@ -46,6 +47,6 @@ public class DogTest {
         testDog.reward("apple");
 
         assertEquals(120, testDog.getPoints());
-        assertEquals("Satisfied!", testDog.printPoints());
+        assertEquals("You have reached 100% satisfaction. Satisfied!", testDog.printPoints());
     }
 }

@@ -51,7 +51,7 @@ public class Molecule {
                 molarMass += numElements * 16;
                 break;
             case 'H':
-                molarMass += numElements;
+                molarMass += numElements * 1;
                 break;
             case 'S':
                 molarMass += numElements * 32;
@@ -62,20 +62,22 @@ public class Molecule {
         }
     }
 
+    // I got this from: https://www.baeldung.com/java-check-string-number
+    public boolean isNumeric(String strNum) {
+
+        Pattern pattern = Pattern.compile("\\d+");
+
+            return pattern.matcher(strNum).matches();
+
+
+    }
 
     public int getMolarMass() {
         return molarMass;
     }
 
-    // I got this from: https://www.baeldung.com/java-check-string-number
-    private boolean isNumeric(String strNum) {
-        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-        if (strNum == null) {
-            return false;
-        } else {
-            return pattern.matcher(strNum).matches();
-        }
-
+    public String getFormula() {
+        return formula;
     }
 }

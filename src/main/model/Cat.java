@@ -8,6 +8,7 @@ public class Cat extends Animals {
     private int getFish = 40;
     private int getLeaf = 10;
 
+    //EFFECTS: initialize the Cat with zero points
     public Cat() {
         super();
     }

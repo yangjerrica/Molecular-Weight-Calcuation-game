@@ -20,7 +20,7 @@ public class QuokkaTest {
     }
 
     @Test
-    void testAward() {
+    void testReward() {
         testQuokka.reward("apple");
         assertEquals(30,testQuokka.getPoints());
         testQuokka.reward("bone");
@@ -45,6 +45,6 @@ public class QuokkaTest {
         testQuokka.reward("fish");
 
         assertEquals(100, testQuokka.getPoints());
-        assertEquals("Satisfied!", testQuokka.printPoints());
+        assertEquals("You have reached 100% satisfaction. Satisfied!", testQuokka.printPoints());
     }
 }

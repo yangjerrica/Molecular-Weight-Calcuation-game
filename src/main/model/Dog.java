@@ -8,6 +8,7 @@ public class Dog extends Animals {
     private int getFish = 15;
     private int getLeaf = 5;
 
+    //EFFECTS: initialize the Dog with zero points
     public Dog() {
         super();
     }
