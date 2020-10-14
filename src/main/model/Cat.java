@@ -2,11 +2,11 @@ package model;
 
 public class Cat extends Animals {
 
-    private int getApple = 15;
-    private int getBone = 5;
-    private int getCarrot = 20;
-    private int getFish = 40;
-    private int getLeaf = 10;
+    private final int getApple = 15;
+    private final int getBone = 5;
+    private final int getCarrot = 20;
+    private final int getFish = 40;
+    private final int getLeaf = 10;
 
     //EFFECTS: initialize the Cat with zero points
     public Cat() {

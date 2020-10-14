@@ -2,11 +2,11 @@ package model;
 
 public class Quokka extends Animals {
 
-    private int getApple = 30;
-    private int getBone = 5;
-    private int getCarrot = 25;
-    private int getFish = 5;
-    private int getLeaf = 35;
+    private final int getApple = 30;
+    private final int getBone = 5;
+    private final int getCarrot = 25;
+    private final int getFish = 5;
+    private final int getLeaf = 35;
 
     //EFFECT: initialize the Quokka with zero points
     public Quokka() {

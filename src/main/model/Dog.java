@@ -2,11 +2,11 @@ package model;
 
 public class Dog extends Animals {
 
-    private int getApple = 30;
-    private int getBone = 25;
-    private int getCarrot = 15;
-    private int getFish = 15;
-    private int getLeaf = 5;
+    private final int getApple = 30;
+    private final int getBone = 25;
+    private final int getCarrot = 15;
+    private final int getFish = 15;
+    private final int getLeaf = 5;
 
     //EFFECTS: initialize the Dog with zero points
     public Dog() {

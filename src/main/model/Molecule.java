@@ -71,9 +71,7 @@ public class Molecule {
     public boolean isNumeric(String strNum) {
 
         Pattern pattern = Pattern.compile("\\d+");
-
-            return pattern.matcher(strNum).matches();
-
+        return pattern.matcher(strNum).matches();
 
     }
 
