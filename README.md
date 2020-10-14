@@ -31,14 +31,14 @@ exams and work on harder problems.
 
 In the context of a molecule calculation game application:
 
-As a user, I want to be able to see the molecule that I will calculate.
+- As a user, I want to be able to see the molecule that I will calculate.
 
-As a user, I want to be able to enter the molecular weight of the molecule and see if it's correct.
+- As a user, I want to be able to enter the molecular weight of the molecule and see if it's correct.
 
-As a user, I want to be able to see the animal I will be feeding.
+- As a user, I want to be able to see the animal I will be feeding.
 
-As a user, I want to be able to select a treat from the list of treats and give it to the animal.
+- As a user, I want to be able to select a treat from the list of treats and give it to the animal.
 
-As a user, I want to be able to see how many points were added to the animal's satisfaction percentage.
+- As a user, I want to be able to add points to the animal's satisfaction percentage.
 
 
