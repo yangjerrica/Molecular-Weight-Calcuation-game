@@ -69,9 +69,9 @@ public class MolarMassApp {
     }
 
     //MODIFIES: this
-    //EFFECTS: if the points of the Dog doesn't increase, the user will have to re-enter a treat that is in the list.
+    //EFFECTS: if the points of the animal doesn't increase, the user will have to re-enter a treat that is in the list.
     // If it increases, then it will print out the current satisfaction percentage. If the percentage >=100, it will
-    // show that Dog is satisfied.
+    // show that the animal is satisfied.
     private void selectTreat(Animals animals) {
         String treat = input.next();
         int currentPoints = dog.getPoints();
@@ -96,8 +96,9 @@ public class MolarMassApp {
 
 
     //MODIFIES: this
-    //EFFECTS: If it increases, then it will print out the current satisfaction percentage. If the percentage >=100,
-    // it will show that Quokka is satisfied and all the other animals are satisfied. Last, it will stop the game.
+    //EFFECTS: If the points increases, then it will print out the current satisfaction percentage.
+    // Otherwise if the percentage >=100, it will show that Quokka is satisfied and all the other animals are satisfied.
+    // Last, it will stop the game.
     private void quokkaTreat() {
 
         if (quokka.getPoints() < 100) {

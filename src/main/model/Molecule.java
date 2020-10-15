@@ -43,7 +43,7 @@ public class Molecule {
     //MODIFIES: this
     //EFFECTS: A helper function of the calculateMolecularMass, inserts the element and number(numElements) found in
     // calculateMolecularMass and does the math
-    public void computeMass(char element, int numElements) {
+    private void computeMass(char element, int numElements) {
         switch (element) {
             case 'C':
                 molarMass += numElements * 12;
@@ -69,9 +69,9 @@ public class Molecule {
     }
 
     //MODIFIES: this
-    //EFFECTS: checks whether the String is a number
+    //EFFECTS: checks whether the String has a number
     // I got this from: https://www.baeldung.com/java-check-string-number
-    public boolean isNumeric(String strNum) {
+    private boolean isNumeric(String strNum) {
 
         Pattern pattern = Pattern.compile("\\d+");
         return pattern.matcher(strNum).matches();

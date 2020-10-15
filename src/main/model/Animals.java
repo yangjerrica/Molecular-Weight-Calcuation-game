@@ -2,11 +2,7 @@ package model;
 
 public abstract class Animals {
 
-    protected String apple = "apple";
-    protected String bone = "bone";
-    protected String carrot = "carrot";
-    protected String fish = "fish";
-    protected String leaf = "leaf";
+
     protected int getApple;
     protected int getBone;
     protected int getCarrot;
@@ -22,6 +18,11 @@ public abstract class Animals {
     //MODIFIES: this
     //EFFECTS: shows the total points, adding the rewarding points
     public void reward(String treat) {
+        String apple = "apple";
+        String bone = "bone";
+        String carrot = "carrot";
+        String fish = "fish";
+        String leaf = "leaf";
         if (treat.equals(apple)) {
             points += getApple;
         } else if (treat.equals(bone)) {
