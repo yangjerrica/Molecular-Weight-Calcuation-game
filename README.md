@@ -1,6 +1,6 @@
 # Molecular Mass Calculation Game
 
-## Calculating common molecules used in middle school
+## Calculating common molecule mass used in middle school
 
 
 
