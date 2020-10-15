@@ -2,7 +2,6 @@ package model;
 
 public abstract class Animals {
 
-
     protected int getApple;
     protected int getBone;
     protected int getCarrot;
