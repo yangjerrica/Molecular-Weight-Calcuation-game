@@ -1,55 +1,54 @@
 package model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CatTest {
-    private Cat testCat;
+    private Animals testAnimal;
 
     @BeforeEach
     void runBefore(){
-        testCat = new Cat();
+        testAnimal = new Cat();
     }
 
     @Test
     void testConstructor() {
-        assertEquals(0, testCat.getPoints());
+        assertEquals(0, testAnimal.getPoints());
     }
 
     @Test
     void testReward() {
-        testCat.reward("apple");
-        assertEquals(15,testCat.getPoints());
-        testCat.reward("bone");
-        assertEquals(20,testCat.getPoints());
-        testCat.reward("leaf");
-        assertEquals(30, testCat.getPoints());
-        testCat.reward("tofu");
-        assertEquals(30, testCat.getPoints());
+        testAnimal.reward("apple");
+        assertEquals(15, testAnimal.getPoints());
+        testAnimal.reward("bone");
+        assertEquals(20, testAnimal.getPoints());
+        testAnimal.reward("leaf");
+        assertEquals(30, testAnimal.getPoints());
+        testAnimal.reward("tofu");
+        assertEquals(30, testAnimal.getPoints());
     }
 
     @Test
     void testPrintPointsUnsatisfied() {
-        testCat.reward("apple");
-        testCat.reward("bone");
+        testAnimal.reward("apple");
+        testAnimal.reward("bone");
 
-        assertEquals(20,testCat.getPoints());
-        assertEquals("The current satisfaction is 20 %", testCat.printPoints());
+        assertEquals(20, testAnimal.getPoints());
+        assertEquals("The current satisfaction is 20 %", testAnimal.printPoints());
     }
 
     @Test
     void testPrintPointsSatisfied() {
-        testCat.reward("fish");
-        testCat.reward("carrot");
-        testCat.reward("apple");
-        testCat.reward("bone");
-        testCat.reward("leaf");
-        testCat.reward("fish");
+        testAnimal.reward("fish");
+        testAnimal.reward("carrot");
+        testAnimal.reward("apple");
+        testAnimal.reward("bone");
+        testAnimal.reward("leaf");
+        testAnimal.reward("fish");
 
-        assertEquals(130, testCat.getPoints());
-        assertEquals("You have reached 100% satisfaction. Satisfied!", testCat.printPoints());
+        assertEquals(130, testAnimal.getPoints());
+        assertEquals("You have reached 100% satisfaction. Satisfied!", testAnimal.printPoints());
     }
 }

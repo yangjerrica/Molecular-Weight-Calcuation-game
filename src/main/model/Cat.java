@@ -2,8 +2,6 @@ package model;
 
 public class Cat extends Animals {
 
-
-
     //EFFECTS: initialize the Cat with zero points and gives different points to each treat according to cat
     public Cat() {
         super();
