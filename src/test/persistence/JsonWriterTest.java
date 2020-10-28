@@ -28,7 +28,7 @@ public class JsonWriterTest extends JsonTest{
     @Test
     void testWriterEmptyMoleculeList() {
         try {
-            MoleculeList ml = new MoleculeList("My molecular list");
+            MoleculeList ml = new MoleculeList("My molecule list");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyMoleculeList.json");
             writer.open();
             writer.write(ml);
@@ -36,7 +36,7 @@ public class JsonWriterTest extends JsonTest{
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyMoleculeList.json");
             ml = reader.read();
-            assertEquals("My molecular list", ml.getName());
+            assertEquals("My molecule list", ml.getName());
             assertEquals(0, ml.numMolecule());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
