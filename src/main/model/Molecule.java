@@ -2,6 +2,7 @@ package model;
 
 import java.util.regex.Pattern;
 
+//represents the Molecule's molecular mass
 public class Molecule {
     private int molarMass;
     private String formula;

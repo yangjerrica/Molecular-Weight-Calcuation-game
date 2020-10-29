@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+//represents the molecules that will be given on the Molecular Quiz
 public class MolecularQuiz {
     public Random random;
     public List<Molecule> molecules;

@@ -1,5 +1,6 @@
 package model;
 
+//represents a quokka
 public class Quokka extends Animals {
 
 

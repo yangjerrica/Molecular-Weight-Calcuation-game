@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+// Represents a writer that writes JSON representation of molecule list to file
+//cited from the JsonSerializationDemo
 public class JsonWriter {
 
     private static final int TAB = 3;

@@ -1,5 +1,6 @@
 package model;
 
+//this is the abstract class that represents Animals
 public abstract class Animals {
 
     protected int getApple;

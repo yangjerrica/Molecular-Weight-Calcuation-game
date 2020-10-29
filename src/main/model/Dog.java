@@ -1,5 +1,6 @@
 package model;
 
+//represents a Dog
 public class Dog extends Animals {
 
     //EFFECTS: initialize the Dog with zero points and gives different points to each treat according to dog

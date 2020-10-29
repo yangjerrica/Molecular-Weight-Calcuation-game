@@ -24,7 +24,7 @@ public class MolarMassApp {
     private JsonReader jsonReader;
 
     //EFFECTS: runs the Molar Mass application
-    public MolarMassApp() {
+    public MolarMassApp() throws FileNotFoundException {
         input = new Scanner(System.in);
         dog = new Dog();
         cat = new Cat();
@@ -36,6 +36,9 @@ public class MolarMassApp {
         runMoleculeGame();
     }
 
+    // MODIFIES: this
+    //EFFECTS: runs the molecule game
+    //cited from the JsonSerializationDemo
     private void runMoleculeGame() {
         boolean keepGoingMain = true;
         String command;
@@ -53,16 +56,19 @@ public class MolarMassApp {
             }
         }
 
-        System.out.println("\nGoodbye!");
+        System.out.println("\nHave a nice day!");
     }
 
 
+    //EFFECTS: displays the menu of the beginning of the game; containing start and quit game
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tstart -> start playing the game!");
         System.out.println("\tq -> quit");
     }
 
+    //EFFECTS: displays the menu inside the game. Will be able to add, print, save ,load molecules entered and
+    // go back to the game
     private void displayMenu2() {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> add Molecules according to different levels");
@@ -72,6 +78,9 @@ public class MolarMassApp {
         System.out.println("\tq -> back to the game!");
     }
 
+    // MODIFIES: this
+    //EFFECTS: this process the command user entered in the beginning of the game
+    //cited from the JsonSerializationDemo
     private void processCommand(String command) {
         if (command.equals("start")) {
             getAndCheckQuestions();
@@ -80,6 +89,9 @@ public class MolarMassApp {
         }
     }
 
+    // MODIFIES: this
+    //EFFECTS: this process the command user entered during the game
+    //cited from the JsonSerializationDemo
     private void processInnerCommand(String command) {
         if (command.equals("a")) {
             addMolecules();
@@ -94,11 +106,13 @@ public class MolarMassApp {
         }
     }
 
+    // MODIFIES: this
+    //EFFECTS: this runs the options user entered during the game
+    //cited from the JsonSerializationDemo
     private void runOptions() {
         boolean keepGoing = true;
         String command;
         input = new Scanner(System.in);
-
         if (input.next().equals("Y")) {
             while (keepGoing) {
                 displayMenu2();
@@ -120,6 +134,9 @@ public class MolarMassApp {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompt user for name and category of moleculesEntered and adds to the moleculeList
+    //cited from the JsonSerializationDemo
     private void addMolecules() {
         Category category = readCategory();
         System.out.println("Please enter the molecule: ");
@@ -128,6 +145,7 @@ public class MolarMassApp {
     }
 
     // EFFECTS: prompts user to select category and returns it
+    //cited from the JsonSerializationDemo
     private Category readCategory() {
         System.out.println("Please select a level for your Molecule");
 
@@ -141,6 +159,8 @@ public class MolarMassApp {
         return Category.values()[menuSelection - 1];
     }
 
+    // EFFECTS: prints all the moleculesEntered in moleculeList to the console
+    //cited from the JsonSerializationDemo
     private void printMoleculesEntered() {
         List<MoleculeEntered> molecules = moleculeList.getMolecules();
 
@@ -149,6 +169,8 @@ public class MolarMassApp {
         }
     }
 
+    // EFFECTS: saves the moleculesList to files
+    //cited from the JsonSerializationDemo
     private void saveMolecules() {
         try {
             jsonWriter.open();
@@ -160,6 +182,9 @@ public class MolarMassApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads moleculeList from file
+    //cited from the JsonSerializationDemo
     private void loadMolecules() {
         try {
             moleculeList = jsonReader.read();

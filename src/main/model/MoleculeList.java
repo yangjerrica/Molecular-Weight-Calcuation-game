@@ -8,22 +8,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// Represents a MoleculeList having a collection of MoleculeEntered
+//cited from the JsonSerializationDemo
 public class MoleculeList implements Writable {
     private String name;
     private List<MoleculeEntered> molecules;
 
-    // EFFECTS: constructs molecule list with a name and empty list of thingies
+    // EFFECTS: constructs molecule list with a name and empty list of molecules entered
     public MoleculeList(String name) {
         this.name = name;
         molecules = new ArrayList<>();
     }
 
+    //EFFECTS: returns the name
     public String getName() {
         return name;
     }
 
     // MODIFIES: this
-    // EFFECTS: adds thingy to this molecule list
+    // EFFECTS: adds molecule entered to this molecule list
     public void addMolecule(MoleculeEntered moleculeEntered) {
         molecules.add(moleculeEntered);
     }
@@ -38,6 +41,7 @@ public class MoleculeList implements Writable {
         return molecules.size();
     }
 
+    //EFFECTS:returns the Json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

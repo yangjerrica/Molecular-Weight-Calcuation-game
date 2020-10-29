@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Represents a reader that reads moleculeList from JSON data stored in file
+//cited from the JsonSerializationDemo
 public class JsonReader {
     private String source;
 
@@ -48,7 +50,7 @@ public class JsonReader {
     }
 
     // MODIFIES: ml
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // EFFECTS: parses molecules entered from JSON object and adds them to molecule list
     private void addMolecules(MoleculeList ml, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("molecules");
         for (Object json : jsonArray) {
@@ -58,7 +60,7 @@ public class JsonReader {
     }
 
     // MODIFIES: ml
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: parses molecules entered from JSON object and adds it to molecule list
     private void addMolecule(MoleculeList ml, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Category category = Category.valueOf(jsonObject.getString("category"));
