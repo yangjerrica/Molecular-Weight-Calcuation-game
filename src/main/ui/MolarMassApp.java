@@ -69,7 +69,7 @@ public class MolarMassApp {
     }
 
     //EFFECTS: displays the menu inside the game. Will be able to add, print, save ,load molecules entered and
-    // go back to the game
+    // back to the game
     private void displayMenu2() {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> add Molecules according to different levels");
