@@ -77,7 +77,6 @@ public class MolarMassApp {
         System.out.println("\ts -> save molecule to file");
         System.out.println("\tl -> load molecule from file");
         System.out.println("\tq -> back to the game!");
-        System.out.println("\te -> end game...");
     }
 
     // MODIFIES: this
@@ -104,10 +103,7 @@ public class MolarMassApp {
         } else if (command.equals("l")) {
             loadMolecules();
         } else {
-            if (command.equals("e")) {
-                System.out.println("Bye bye :)");
-                keepGoingMain = false;
-            } else if (command.equals("q")) {
+            if (command.equals("q")) {
                 System.out.println("Back to the game!");
             } else {
                 System.out.println("Selection not valid...");
@@ -128,20 +124,20 @@ public class MolarMassApp {
             while (keepGoing) {
                 displayMenu2();
                 command = input.next();
-                if (command.equals("e")) {
-                    keepGoing = false;
-                    this.keepGoing = false;
-                }
+
                 if (command.equals("q")) {
                     keepGoing = false;
                 }
                 processInnerCommand(command);
 
             }
-
         } else if (command.equals("N")) {
             selectNoRespond();
 
+        } else if (command.equals("E")) {
+            this.keepGoing = false;
+            System.out.println("Bye bye :)");
+            keepGoingMain = false;
         } else {
             System.out.println("Please enter Y or N");
             runOptions();
@@ -247,7 +243,7 @@ public class MolarMassApp {
             if (Integer.parseInt(userAnswer) == molecule.getMolarMass()) {
                 System.out.println("Congratulations! Please pick a treat from below!");
                 giveTreat();
-                System.out.println("Do you want to add this to your molecule list? Y for Yes, N for No.");
+                System.out.println("Do you want to add it to your molecule list? Y for Yes, N for No, E for Exit game");
                 runOptions();
             } else {
                 System.out.println("Wrong! Please answer the question again.");
