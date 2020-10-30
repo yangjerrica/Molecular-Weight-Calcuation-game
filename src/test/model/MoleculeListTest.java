@@ -14,15 +14,24 @@ public class MoleculeListTest {
     @BeforeEach
     public void beforeEach() {
         moleculeList = new MoleculeList("My molecule list");
+        moleculeList.addMolecule(new MoleculeEntered("SO2", Category.HARD));
+        moleculeList.addMolecule(new MoleculeEntered("H2O", Category.EASY));
+        moleculeList.addMolecule(new MoleculeEntered("CF2", Category.MEDIUM));
     }
 
     @Test
     public void testAddMolecule() {
-        moleculeList.addMolecule(new MoleculeEntered("SO2", Category.HARD));
-        moleculeList.addMolecule(new MoleculeEntered("H2O", Category.EASY));
-        moleculeList.addMolecule(new MoleculeEntered("CF2", Category.MEDIUM));
+
         assertEquals(3, moleculeList.numMolecule());
         assertEquals("My molecule list", moleculeList.getName());
         assertEquals("[HARD: SO2, EASY: H2O, MEDIUM: CF2]", moleculeList.getMolecules().toString());
+    }
+
+    @Test
+    public void testMoleculeToJason() {
+
+        assertEquals("{\"molecules\":[{\"name\":\"SO2\"," + "\"category\":\"HARD\"}," +
+                "{\"name\":\"H2O\",\"category\":\"EASY\"},{\"name\":\"CF2\",\"category\":\"MEDIUM\"}],\"name\":" +
+                        "\"My molecule list\"}", moleculeList.toJson().toString());
     }
 }

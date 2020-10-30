@@ -17,6 +17,8 @@ public class MoleculeEnteredTest {
     @Test
     public void testToString() {
         assertEquals("EASY: CO2", moleculeEntered.toString());
+        assertEquals("CO2", moleculeEntered.getName());
+        assertEquals("EASY", moleculeEntered.getCategory().toString());
     }
 
     @Test
