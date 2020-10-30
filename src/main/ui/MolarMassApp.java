@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-//
+// Represents the molar mass application
 public class MolarMassApp {
 
     private MolecularQuiz molecularQuiz;
