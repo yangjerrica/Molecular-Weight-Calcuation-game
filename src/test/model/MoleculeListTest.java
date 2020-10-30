@@ -23,6 +23,6 @@ public class MoleculeListTest {
         moleculeList.addMolecule(new MoleculeEntered("CF2", Category.MEDIUM));
         assertEquals(3, moleculeList.numMolecule());
         assertEquals("My molecule list", moleculeList.getName());
-//        assertEquals("HARD: SO2, EASY: H2O, MEDIUM: CF2", moleculeList.getMolecules());
+        assertEquals("[HARD: SO2, EASY: H2O, MEDIUM: CF2]", moleculeList.getMolecules().toString());
     }
 }

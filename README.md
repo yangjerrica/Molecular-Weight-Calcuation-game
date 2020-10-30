@@ -41,10 +41,10 @@ In the context of a molecule calculation game application:
 
 - As a user, I want to be able to add points to the animal's satisfaction percentage.
 
-- As a user, I want to be able to add molecules to the file and save it.
+- As a user, I want to be able to add molecules to the file and save it in the middle of the game.
 
-- As a user, I want to be able to load the molecules I added.
+- As a user, I want to be able to load the molecules I added in the middle of the game.
 
-- As a user, I want to be able to restart or quit the game.
+- As a user, I want to be able to quit the game in the middle of the game.
 
 

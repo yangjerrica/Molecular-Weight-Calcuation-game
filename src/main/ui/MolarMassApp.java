@@ -62,7 +62,7 @@ public class MolarMassApp {
 
     //EFFECTS: displays the menu of the beginning of the game; containing start and quit game
     private void displayMenu() {
-        System.out.println("\nSelect from:");
+        System.out.println("\nHello! Welcome to the Molar Mass App. Please select one from below:");
         System.out.println("\tstart -> start playing the game!");
         System.out.println("\tq -> quit");
     }
@@ -113,7 +113,8 @@ public class MolarMassApp {
         boolean keepGoing = true;
         String command;
         input = new Scanner(System.in);
-        if (input.next().equals("Y")) {
+        command = input.next();
+        if (command.equals("Y")) {
             while (keepGoing) {
                 displayMenu2();
                 command = input.next();
@@ -125,8 +126,8 @@ public class MolarMassApp {
                     processInnerCommand(command);
                 }
             }
-        } else if (input.next().equals("N")) {
-            System.out.println("Continue...:)");
+        } else if (command.equals("N")) {
+            System.out.println("Great! Lets continue...:)");
         } else {
             System.out.println("Please enter Y or N");
             runOptions();
@@ -209,18 +210,24 @@ public class MolarMassApp {
 
     //MODIFIES: this and molecule
     //EFFECTS: if the user gets the answer correct, it will print :Congratulations! Please pick a treat from below!
-    // otherwise it will print: "Wrong! Please answer the question again." and ca continue only when the user gets
-    //the correct answer.
+    // otherwise it will print: "Wrong! Please answer the question again." and can continue only when the user gets
+    //the correct answer. If the user enters a string that is not in the form of numbers, it will be caught by
+    //NumberFormatException.
     private void correctAnswer(Molecule molecule) {
-        int userAnswer;
-        userAnswer = input.nextInt();
-        if (userAnswer == molecule.getMolarMass()) {
-            System.out.println("Congratulations! Please pick a treat from below!");
-            giveTreat();
-            System.out.println("Do you want to add this to your molecule list? Y for Yes, N for No.");
-            runOptions();
-        } else {
-            System.out.println("Wrong! Please answer the question again.");
+        String userAnswer;
+        userAnswer = input.next();
+        try {
+            if (Integer.parseInt(userAnswer) == molecule.getMolarMass()) {
+                System.out.println("Congratulations! Please pick a treat from below!");
+                giveTreat();
+                System.out.println("Do you want to add this to your molecule list? Y for Yes, N for No.");
+                runOptions();
+            } else {
+                System.out.println("Wrong! Please answer the question again.");
+                correctAnswer(molecule);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("This is not a number!");
             correctAnswer(molecule);
         }
     }
