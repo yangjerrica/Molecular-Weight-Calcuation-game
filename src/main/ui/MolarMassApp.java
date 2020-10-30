@@ -18,6 +18,7 @@ public class MolarMassApp {
     private Cat cat;
     private Quokka quokka;
     private boolean keepGoing = true;
+    private boolean keepGoingMain = true;
     private static final String JSON_STORE = "./data/moleculeList.json";
     private MoleculeList moleculeList;
     private JsonWriter jsonWriter;
@@ -40,7 +41,7 @@ public class MolarMassApp {
     //EFFECTS: runs the molecule game
     //cited from the JsonSerializationDemo
     private void runMoleculeGame() {
-        boolean keepGoingMain = true;
+
         String command;
         input = new Scanner(System.in);
 
@@ -62,7 +63,7 @@ public class MolarMassApp {
 
     //EFFECTS: displays the menu of the beginning of the game; containing start and quit game
     private void displayMenu() {
-        System.out.println("\nHello! Welcome to the Molar Mass App. Please select one from below:");
+        System.out.println("\nHello! Welcome to the Molar Mass Calculating Game! Please select one from below:");
         System.out.println("\tstart -> start playing the game!");
         System.out.println("\tq -> quit");
     }
@@ -76,6 +77,7 @@ public class MolarMassApp {
         System.out.println("\ts -> save molecule to file");
         System.out.println("\tl -> load molecule from file");
         System.out.println("\tq -> back to the game!");
+        System.out.println("\te -> end game...");
     }
 
     // MODIFIES: this
@@ -102,7 +104,14 @@ public class MolarMassApp {
         } else if (command.equals("l")) {
             loadMolecules();
         } else {
-            System.out.println("Selection not valid...");
+            if (command.equals("e")) {
+                System.out.println("Bye bye :)");
+                keepGoingMain = false;
+            } else if (command.equals("q")) {
+                System.out.println("Back to the game!");
+            } else {
+                System.out.println("Selection not valid...");
+            }
         }
     }
 
@@ -114,25 +123,43 @@ public class MolarMassApp {
         String command;
         input = new Scanner(System.in);
         command = input.next();
+
         if (command.equals("Y")) {
             while (keepGoing) {
                 displayMenu2();
                 command = input.next();
-                command = command.toLowerCase();
-
+                if (command.equals("e")) {
+                    keepGoing = false;
+                    this.keepGoing = false;
+                }
                 if (command.equals("q")) {
                     keepGoing = false;
-                } else {
-                    processInnerCommand(command);
                 }
+                processInnerCommand(command);
+
             }
+
         } else if (command.equals("N")) {
-            System.out.println("Great! Lets continue...:)");
+            selectNoRespond();
+
         } else {
             System.out.println("Please enter Y or N");
             runOptions();
         }
 
+    }
+
+
+    //EFFECTS: this is a helper function, it gives responds to two different situation. If keepGoing == false, responds
+    //"Congratulation :D ! We will redirect you to the home page"; otherwise "Great! Lets continue...:)".
+    private void selectNoRespond() {
+        if (!this.keepGoing) {
+            System.out.println("Congratulation :D ! You won!");
+            System.out.println("-END-");
+
+        } else {
+            System.out.println("Great! Lets continue...:)");
+        }
     }
 
     // MODIFIES: this
@@ -254,7 +281,7 @@ public class MolarMassApp {
     // show that the animal is satisfied.
     private void selectTreat(Animals animals) {
         String treat = input.next();
-        int currentPoints = dog.getPoints();
+        int currentPoints = animals.getPoints();
         animals.reward(treat);
         while (currentPoints == animals.getPoints()) {
             System.out.println("Please choose a treat in the list above.");
