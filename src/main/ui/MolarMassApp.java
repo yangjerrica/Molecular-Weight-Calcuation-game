@@ -139,7 +139,7 @@ public class MolarMassApp {
             System.out.println("Bye bye :)");
             keepGoingMain = false;
         } else {
-            System.out.println("Please enter Y or N");
+            System.out.println("Please enter Y for Yes: see options, N for No: continue, or E for Exit: Exit game");
             runOptions();
         }
 
@@ -166,19 +166,19 @@ public class MolarMassApp {
         System.out.println("Please enter the molecule: ");
         String name = input.next();
         moleculeList.addMolecule(new MoleculeEntered(name, category));
+
     }
 
     // EFFECTS: prompts user to select category and returns it
     //cited from the JsonSerializationDemo
     private Category readCategory() {
-        System.out.println("Please select a level for your Molecule");
+        System.out.println("Please select a level for your Molecule. Enter 1, 2, or 3");
 
         int menuLabel = 1;
         for (Category c : Category.values()) {
             System.out.println(menuLabel + ": " + c);
             menuLabel++;
         }
-
         int menuSelection = input.nextInt();
         return Category.values()[menuSelection - 1];
     }
