@@ -1,14 +1,4 @@
-{"Animals": [
-   {
-      "type": "Dog",
-      "points": 30
-   },
-   {
-      "type": "Cat",
-      "points": 0
-   },
-   {
-      "type": "Quokka",
-      "points": 0
-   }
-]}
+{
+   "molecules": [],
+   "name": "My Molecule List"
+}

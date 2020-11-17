@@ -22,7 +22,7 @@
 //    private MoleculeListHandler mlHandler = new MoleculeListHandler();
 //    private TreatHandler treatHandler = new TreatHandler();
 //    private VisibilityPanel visibility;
-//    private TitleScreenPanel titleScreenPanel;
+//    private JPanel titleScreenPanel;
 //    private MoleculeList moleculeList;
 //    private Dog dog;
 //    private Cat cat;
@@ -40,7 +40,7 @@
 //
 //    public GUI() {
 //        super("Molar Mass Calculation Game");
-//        titleScreenPanel = new TitleScreenPanel();
+//        titleScreenPanel = new JPanel();
 //        visibility = new VisibilityPanel(molarMassGame);
 //        jsonWriter = new JsonWriter(JSON_STORE);
 //        jsonReader = new JsonReader(JSON_STORE);
