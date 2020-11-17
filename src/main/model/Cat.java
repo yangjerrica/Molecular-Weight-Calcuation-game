@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //represents a Cat
 public class Cat extends Animals {
 
@@ -14,4 +17,12 @@ public class Cat extends Animals {
     }
 
 
+    //EFFECTS:returns the Json object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("type", "Cat");
+        json.put("points", getPoints());
+        return json;
+    }
 }

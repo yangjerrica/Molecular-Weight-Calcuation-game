@@ -1,4 +1,13 @@
 {
    "molecules": [],
    "name": "My molecule list"
+}{
+   "type": "Dog",
+   "points": 0
+}{
+   "type": "Cat",
+   "points": 0
+}{
+   "type": "Quokka",
+   "points": 0
 }

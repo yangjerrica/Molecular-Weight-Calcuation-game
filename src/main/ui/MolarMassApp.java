@@ -6,6 +6,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,9 +21,11 @@ public class MolarMassApp {
     private boolean keepGoing = true;
     private boolean keepGoingMain = true;
     private static final String JSON_STORE = "./data/moleculeList.json";
+    private static final String JSON_STORE_ANIMALS = "./data/animals.json";
     private MoleculeList moleculeList;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private List<Animals> animals;
 
     //EFFECTS: runs the Molar Mass application
     public MolarMassApp() throws FileNotFoundException {
@@ -30,6 +33,7 @@ public class MolarMassApp {
         dog = new Dog();
         cat = new Cat();
         quokka = new Quokka();
+        animals = new ArrayList<>();
         molecularQuiz = new MolecularQuiz();
         moleculeList = new MoleculeList("My Molecule List");
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -121,30 +125,52 @@ public class MolarMassApp {
         command = input.next();
 
         if (command.equals("Y")) {
-            while (keepGoing) {
-                displayMenu2();
-                command = input.next();
-
-                if (command.equals("q")) {
-                    keepGoing = false;
-                }
-                processInnerCommand(command);
-
-            }
+            continueYes(keepGoing);
         } else if (command.equals("N")) {
             selectNoRespond();
+
+        } else if (command.equals("S")) {
+            saveGame();
 
         } else if (command.equals("E")) {
             this.keepGoing = false;
             System.out.println("Bye bye :)");
             keepGoingMain = false;
         } else {
-            System.out.println("Please enter Y for Yes: see options, N for No: continue, or E for Exit: Exit game");
+            System.out.println("Please enter Y for Yes: see options, N for No: continue, S for Save,"
+                    + " or E for Exit: Exit game");
             runOptions();
         }
 
     }
 
+    private void continueYes(boolean keepGoing) {
+        String command;
+        while (keepGoing) {
+            displayMenu2();
+            command = input.next();
+
+            if (command.equals("q")) {
+                keepGoing = false;
+            }
+            processInnerCommand(command);
+
+        }
+    }
+
+    private void saveGame() {
+        animals.add(dog);
+        animals.add(cat);
+        animals.add(quokka);
+        try {
+            jsonWriter.open();
+            jsonWriter.write(animals);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE_ANIMALS);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE_ANIMALS);
+        }
+    }
 
     //EFFECTS: this is a helper function, it gives responds to two different situation. If keepGoing == false, responds
     //"Congratulation :D ! We will redirect you to the home page"; otherwise "Great! Lets continue...:)".

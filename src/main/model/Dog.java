@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 //represents a Dog
 public class Dog extends Animals {
 
@@ -12,6 +14,15 @@ public class Dog extends Animals {
         getFish = 15;
         getLeaf = 5;
 
+    }
+
+    //EFFECTS:returns the Json object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("type", "Dog");
+        json.put("points", getPoints());
+        return json;
     }
 
 

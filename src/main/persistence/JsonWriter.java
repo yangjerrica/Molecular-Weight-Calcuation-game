@@ -1,11 +1,14 @@
 package persistence;
 
+import model.Animals;
 import model.MoleculeList;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.List;
 
 // Represents a writer that writes JSON representation of molecule list to file
 //cited from the JsonSerializationDemo
@@ -35,6 +38,26 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
+    // EFFECTS: writes JSON representation of Animals to file
+    public void write(Animals animal) {
+        JSONObject json = animal.toJson();
+        saveToFile(json.toString(TAB));
+    }
+
+    public void write(List<Animals> animals) {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        JSONObject dog = animals.get(0).toJson();
+        JSONObject cat = animals.get(1).toJson();
+        JSONObject quokka = animals.get(2).toJson();
+        jsonArray.put(dog);
+        jsonArray.put(cat);
+        jsonArray.put(quokka);
+        jsonObject.put("Animals", jsonArray);
+        saveToFile(jsonObject.toString(TAB));
+    }
+
+    // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
         writer.close();
@@ -45,4 +68,6 @@ public class JsonWriter {
     private void saveToFile(String json) {
         writer.print(json);
     }
+
+
 }

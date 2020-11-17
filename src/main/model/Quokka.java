@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 //represents a quokka
 public class Quokka extends Animals {
 
@@ -15,5 +17,12 @@ public class Quokka extends Animals {
 
     }
 
-
+    //EFFECTS:returns the Json object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("type", "Quokka");
+        json.put("points", getPoints());
+        return json;
+    }
 }

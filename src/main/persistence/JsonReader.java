@@ -1,8 +1,6 @@
 package persistence;
 
-import model.Category;
-import model.MoleculeEntered;
-import model.MoleculeList;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,6 +26,14 @@ public class JsonReader {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseMoleculeList(jsonObject);
+    }
+
+    // EFFECTS: reads Animals from file and returns it;
+    // throws IOException if an error occurs reading data from file
+    public JSONArray readAnimal() throws IOException {
+        String jsonData = readFile(source);
+        JSONObject jsonObject = new JSONObject(jsonData);
+        return parseAnimals(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -66,5 +72,27 @@ public class JsonReader {
         Category category = Category.valueOf(jsonObject.getString("category"));
         MoleculeEntered moleculeEntered = new MoleculeEntered(name, category);
         ml.addMolecule(moleculeEntered);
+    }
+
+    private JSONArray parseAnimals(JSONObject jsonObject) {
+        JSONArray animalsJson = jsonObject.getJSONArray("Animals");
+        Animals cat = new Cat();
+        Animals dog = new Dog();
+        Animals quokka = new Quokka();
+
+        for (Object json : animalsJson) {
+            JSONObject animal = (JSONObject) json;
+            int point = animal.getInt("points");
+            String animalType = ((JSONObject) json).getString("type");
+            if (animalType.equals("Cat")) {
+                cat.setPoints(point);
+            } else if (animalType.equals("Dog")) {
+                dog.setPoints(point);
+            } else if (animalType.equals("Quokka")) {
+                quokka.setPoints(point);
+            }
+
+        }
+        return animalsJson;
     }
 }

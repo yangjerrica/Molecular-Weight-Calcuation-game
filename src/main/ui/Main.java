@@ -1,11 +1,10 @@
 package ui;
 
-import model.Molecule;
-
 import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) {
+//        new MolarMassGameGUI();
         try {
             new MolarMassApp();
         } catch (FileNotFoundException e) {

@@ -1,12 +1,10 @@
 package persistence;
 
-import model.Category;
-import model.Molecule;
-import model.MoleculeEntered;
-import model.MoleculeList;
+import model.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,9 +27,15 @@ public class JsonWriterTest extends JsonTest{
     void testWriterEmptyMoleculeList() {
         try {
             MoleculeList ml = new MoleculeList("My molecule list");
+            Animals dog = new Dog();
+            Animals cat = new Cat();
+            Animals quokka = new Quokka();
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyMoleculeList.json");
             writer.open();
             writer.write(ml);
+            writer.write(dog);
+            writer.write(cat);
+            writer.write(quokka);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyMoleculeList.json");
@@ -62,6 +66,29 @@ public class JsonWriterTest extends JsonTest{
             checkMoleculeEntered("C8H9O2", Category.HARD, molecules.get(0));
             checkMoleculeEntered("SF6", Category.MEDIUM, molecules.get(1));
 
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
+    @Test
+    void testWriterEmptyAnimal() {
+        try {
+            Animals dog = new Dog();
+            Animals cat = new Cat();
+            Animals quokka = new Quokka();
+            List<Animals> animals = new ArrayList<>();
+            animals.add(dog);
+            animals.add(cat);
+            animals.add(quokka);
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyAnimal.json");
+            writer.open();
+            writer.write(animals);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testWriterEmptyAnimal.json");
+            reader.readAnimal();
+           checkAnimal("Quokka", 0, quokka);
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

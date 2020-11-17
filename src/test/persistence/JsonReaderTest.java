@@ -1,8 +1,6 @@
 package persistence;
 
-import model.Category;
-import model.MoleculeEntered;
-import model.MoleculeList;
+import model.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -46,6 +44,25 @@ public class JsonReaderTest extends JsonTest{
             assertEquals(2, molecules.size());
             checkMoleculeEntered("C8H9O2", Category.HARD, molecules.get(0));
             checkMoleculeEntered("SF6", Category.MEDIUM, molecules.get(1));
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
+    void testReaderAnimals() {
+        JsonReader reader = new JsonReader("./data/testReaderEmptyAnimal.json");
+        try {
+            Animals dog = new Dog();
+            Animals cat = new Cat();
+            Animals quokka = new Quokka();
+            reader.readAnimal();
+            checkAnimal("Dog", 0, dog);
+            assertEquals(0, dog.getPoints());
+            checkAnimal("Cat", 0, cat);
+            assertEquals(0, cat.getPoints());
+            checkAnimal("Quokka", 0, quokka);
+            assertEquals(0, quokka.getPoints());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

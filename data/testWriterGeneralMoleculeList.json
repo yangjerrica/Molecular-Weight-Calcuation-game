@@ -1,12 +1,13 @@
 {
-  "molecules": [      {
-    "name": "C8H9O2",
-    "category": "HARD"
-  },
-    {
-      "name": "SF6",
-      "category": "MEDIUM"
-    }
-  ],
-  "name": "My molecule list"
+   "molecules": [
+      {
+         "name": "C8H9O2",
+         "category": "HARD"
+      },
+      {
+         "name": "SF6",
+         "category": "MEDIUM"
+      }
+   ],
+   "name": "My molecule list"
 }

@@ -1,7 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.util.Calendar;
+
 //this is the abstract class that represents Animals
-public abstract class Animals {
+public abstract class Animals implements Writable {
 
     protected int getApple;
     protected int getBone;
@@ -54,4 +60,9 @@ public abstract class Animals {
     public int getPoints() {
         return points;
     }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
 }
