@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 // Represents a reader that reads moleculeList from JSON data stored in file
@@ -30,7 +32,7 @@ public class JsonReader {
 
     // EFFECTS: reads Animals from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public JSONArray readAnimal() throws IOException {
+    public List<Animals> readAnimal() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseAnimals(jsonObject);
@@ -74,11 +76,15 @@ public class JsonReader {
         ml.addMolecule(moleculeEntered);
     }
 
-    private JSONArray parseAnimals(JSONObject jsonObject) {
+    private List<Animals> parseAnimals(JSONObject jsonObject) {
         JSONArray animalsJson = jsonObject.getJSONArray("Animals");
+        List<Animals> animalsArray = new ArrayList<>();
         Animals cat = new Cat();
         Animals dog = new Dog();
         Animals quokka = new Quokka();
+        animalsArray.add(dog);
+        animalsArray.add(cat);
+        animalsArray.add(quokka);
 
         for (Object json : animalsJson) {
             JSONObject animal = (JSONObject) json;
@@ -93,6 +99,6 @@ public class JsonReader {
             }
 
         }
-        return animalsJson;
+        return animalsArray;
     }
 }

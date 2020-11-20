@@ -1,4 +1,7 @@
 {
-   "molecules": [],
+   "molecules": [{
+      "name": "C4H8",
+      "category": "EASY"
+   }],
    "name": "My Molecule List"
 }

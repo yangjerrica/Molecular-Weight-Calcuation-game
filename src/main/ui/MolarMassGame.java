@@ -14,13 +14,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MolarMassGame extends JFrame {
+    private static final int INTERVAL = 500;
     private static int WIDTH = 800;
-    private static int HEIGHT = 600;
+    private static int HEIGHT = 800;
+
+    private Font titleFont = new Font("Monospaced", Font.BOLD, 56);
+    private Font normalFont = new Font("Helvetica", Font.PLAIN, 23);
+
+    private static final String JSON_STORE = "./data/moleculeList.json";
+    private static final String JSON_STORE_ANIMALS = "./data/animals.json";
+
+
+    private ui.VisibilityTool visibility = new VisibilityTool(this);
+    private TitleScreenHandler titleScreenHandler = new TitleScreenHandler();
+    private ChoiceHandler choiceHandler = new ChoiceHandler();
+    private TreatHandler treatHandler = new TreatHandler();
+
     private Container container;
     public JPanel titlePanel;
     private JLabel titleLabel;
-    private Font titleFont = new Font("Times New Roman", Font.BOLD, 56);
-    private Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
     public JPanel startButtonPanel;
     public JPanel playerPanel;
     private JLabel pointLabel;
@@ -29,53 +41,29 @@ public class MolarMassGame extends JFrame {
     private JTextArea mainTextArea;
     private Molecule randomMolecule;
     private MolecularQuiz molecularQuiz;
-    private TitleScreenHandler titleScreenHandler = new TitleScreenHandler();
     public JPanel choiceButtonPanel;
     private int playerPoints;
     private Dog dog;
     private Cat cat;
     private Quokka quokka;
-    private ChoiceHandler choiceHandler = new ChoiceHandler();
-    private static final String JSON_STORE = "./data/moleculeList.json";
-    private static final String JSON_STORE_ANIMALS = "./data/animals.json";
     private MoleculeList moleculeList;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
     private List<Animals> animals;
-    private JTextField userText;
     private JLabel success;
     private JButton submitButton;
-    private TreatHandler treatHandler = new TreatHandler();
     public JPanel treatPanel;
-    private JLabel pickLabel;
-    private JLabel sideNotesLabel;
     private JLabel sideNotesLabelSaveGame;
-    public JPanel moleculeListPanel;
-    private MoleculeListHandler moleculeListHandler = new MoleculeListHandler();
-    private ui.VisibilityTool visibility = new VisibilityTool(this);
-    private JsonReader jsonReaderAnimal;
-    private JsonWriter jsonWriterAnimal;
-    private static final int INTERVAL = 500;
+    public JPanel imagePanel;
     public JPanel saveButtonPanel;
-    private JList savedMoleculeList;
+    private DefaultListModel<String> listNames;
     public JPanel saveMoleculeListPanel;
-    private JScrollPane moleculeListScroll;
-    private String[] strings = {"djsi", "dsmkm", "dlmfd", "djsi", "dsmkm", "dlmfd", "djsi", "dsmkm", "dlmfd"};
+    private JPanel quokkaPanel;
 
 
     public MolarMassGame() {
         super("MOLAR MASS GAME");
 
-        dog = new Dog();
-        cat = new Cat();
-        quokka = new Quokka();
-        animals = new ArrayList<>();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
-        jsonWriterAnimal = new JsonWriter(JSON_STORE_ANIMALS);
-        jsonReaderAnimal = new JsonReader(JSON_STORE_ANIMALS);
-        moleculeList = new MoleculeList("My Molecule List");
-
+        setUp();
+        listNames = new DefaultListModel<>();
 
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
@@ -91,23 +79,44 @@ public class MolarMassGame extends JFrame {
 
     }
 
+    private void setUp() {
+        dog = new Dog();
+        cat = new Cat();
+        quokka = new Quokka();
+        animals = new ArrayList<>();
+
+        moleculeList = new MoleculeList("My Molecule List");
+    }
+
     private void createTitleScreen() {
         titlePanel = new JPanel();
-        titlePanel.setBounds(100, 100, 600, 130);
+        titlePanel.setBounds(65, 100, 670, 75);
         titlePanel.setBackground(Color.pink);
 
-        titleLabel = new JLabel("MOLAR MASS GAME");
+        titleLabel = new JLabel("Hungry Animals @@!!");
         titleLabel.setForeground(Color.blue);
         titleLabel.setFont(titleFont);
         titlePanel.add(titleLabel);
         container.add(titlePanel);
 
         startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(100, 400, 600, 100);
+        startButtonPanel.setBounds(65, 175, 670, 100);
         startButtonPanel.setBackground(Color.orange);
         startButtonPanel.setLayout(new GridLayout(1, 3));
 
-        JButton startButton = new JButton("START");
+        mainMenuButtons();
+
+        quokkaPanel = new JPanel();
+        quokkaPanel.setBounds(100, 260, 700, 700);
+        quokkaPanel.setBackground(Color.lightGray);
+        container.add(quokkaPanel);
+        ImageIcon imageQuokka = new ImageIcon(getClass().getResource("/resources/images/quokka.png"));
+        JLabel quokkaLabel = new JLabel(imageQuokka);
+        quokkaPanel.add(quokkaLabel);
+    }
+
+    private void mainMenuButtons() {
+        JButton startButton = new JButton("NEW GAME");
         choiceButton(startButton);
         startButton.addActionListener(titleScreenHandler);
         startButton.setActionCommand("start");
@@ -129,28 +138,29 @@ public class MolarMassGame extends JFrame {
 
     private void choiceButton(JButton choice) {
         choice.setBackground(Color.black);
-        choice.setForeground(Color.blue);
+        choice.setForeground(Color.black);
         choice.setFont(normalFont);
     }
 
     public void createGameScreen() {
         titlePanel.setVisible(false);
         startButtonPanel.setVisible(false);
+        quokkaPanel.setVisible(false);
 
         createMainTextScreen();
         createTreatPanel();
         createChoiceScreen();
         createPlayerPanel();
-        createAddMoleculeListPanel();
         createSaveButtonPanel();
         createSavedMoleculeListPanel();
+        createImage();
 
     }
 
     private void createSaveButtonPanel() {
         saveButtonPanel = new JPanel();
-        saveButtonPanel.setBounds(500, 15, 300, 50);
-        saveButtonPanel.setBackground(Color.blue);
+        saveButtonPanel.setBounds(500, 15, 200, 45);
+        saveButtonPanel.setBackground(Color.pink);
         container.add(saveButtonPanel);
 
         JButton saveButton = new JButton("MY MOLECULE LIST");
@@ -170,21 +180,65 @@ public class MolarMassGame extends JFrame {
     private void createSavedMoleculeListPanel() {
         saveMoleculeListPanel = new JPanel();
         saveMoleculeListPanel.setBounds(75, 250, 600, 300);
-        saveMoleculeListPanel.setBackground(Color.red);
+        saveMoleculeListPanel.setBackground(Color.pink);
         container.add(saveMoleculeListPanel);
 
-        savedMoleculeList = new JList(strings);
+        JList savedMoleculeList = new JList(listNames);
         savedMoleculeList.setFont(normalFont);
-        moleculeListScroll = new JScrollPane(savedMoleculeList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        savedMoleculeList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+        JScrollPane moleculeListScroll = new JScrollPane(savedMoleculeList, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         saveMoleculeListPanel.add(moleculeListScroll);
 
+        removeButton(savedMoleculeList);
+        saveAndReturnButton();
+    }
+
+    private void saveAndReturnButton() {
+        JButton saveButton = new JButton("SAVE");
+        choiceButton(saveButton);
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveMoleculesToList();
+            }
+        });
+        saveMoleculeListPanel.add(saveButton);
+
+        JButton returnButton = new JButton("RETURN");
+        choiceButton(returnButton);
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                visibility.toQuestions();
+                newMainTextScreen();
+            }
+        });
+        saveMoleculeListPanel.add(returnButton);
+    }
+
+    private void removeButton(JList savedMoleculeList) {
+        JButton removeButton = new JButton("REMOVE");
+        choiceButton(removeButton);
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = savedMoleculeList.getSelectedIndex();
+                if (index >= 0) {
+                    System.out.println(listNames.get(index));
+                    listNames.remove(index);
+                    moleculeList.getMolecules().remove(index);
+                }
+            }
+        });
+        saveMoleculeListPanel.add(removeButton);
     }
 
     private void createMainTextScreen() {
         mainTextPanel = new JPanel();
         mainTextPanel.setBounds(50, 100, 650, 150);
-        mainTextPanel.setBackground(Color.blue);
+        mainTextPanel.setBackground(Color.gray);
         container.add(mainTextPanel);
 
         molecularQuiz = new MolecularQuiz();
@@ -192,16 +246,22 @@ public class MolarMassGame extends JFrame {
 
         mainTextArea = new JTextArea();
         mainTextArea.setBounds(100, 100, 600, 250);
-        mainTextArea.setBackground(Color.white);
+        mainTextArea.setBackground(Color.GRAY);
         mainTextArea.setForeground(Color.black);
         mainTextArea.setFont(normalFont);
-        mainTextArea.setText("Please enter the molecular weight of the molecule:     "
-                + randomMolecule.getFormula());
+        mainTextArea.setText("        Please enter the molecular weight of the molecule:                        "
+                + "                      " + randomMolecule.getFormula());
+
         String currentMolecule = Integer.toString(randomMolecule.getMolarMass());
         mainTextArea.setLineWrap(true);
         mainTextPanel.add(mainTextArea);
 
-        userText = new JTextField(20);
+        userInput(currentMolecule);
+
+    }
+
+    private void userInput(String currentMolecule) {
+        JTextField userText = new JTextField(20);
         userText.setBounds(350, 250, 300, 200);
 
         mainTextPanel.add(userText);
@@ -226,7 +286,36 @@ public class MolarMassGame extends JFrame {
             }
         });
         mainTextPanel.add(submitButton);
+    }
 
+    private void createImage() {
+        imagePanel = new JPanel();
+        imagePanel.setBounds(50, 100, 700, 700);
+        imagePanel.setBackground(Color.lightGray);
+        container.add(imagePanel);
+
+        String text = "<html>Hello! <br/>Welcome to the molar mass calculation game!<br/>The goal of this game is "
+                + "to feed three adorable<br/>  animals full. Their satisfaction rate is<br/> shown above! "
+                + "You will be able to feed them a treat<br/> everytime you get an answer right!<br/>"
+                + " The first one up is a cute little puppy!<br/> Good Luck!</html>";
+        JLabel instructions = new JLabel("<html><div style='text-align: center;'>" + text + "</div></html>");
+        
+        instructions.setFont(normalFont);
+        imagePanel.add(instructions);
+
+        ImageIcon imageDog = new ImageIcon(getClass().getResource("/resources/images/IMG_5683.png"));
+        JLabel dogLabel = new JLabel(imageDog);
+        imagePanel.add(dogLabel);
+
+        JButton choice1 = new JButton("LET'S BEGIN!");
+        choice1.setBounds(350, 280, 50, 30);
+        choice1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                visibility.toQuestions();
+            }
+        });
+        imagePanel.add(choice1);
 
     }
 
@@ -245,54 +334,54 @@ public class MolarMassGame extends JFrame {
 
     private void createTreatPanel() {
         treatPanel = new JPanel();
-        treatPanel.setBounds(75, 250, 600, 200);
-        treatPanel.setBackground(Color.red);
+        treatPanel.setBounds(175, 250, 430, 200);
+        treatPanel.setBackground(Color.lightGray);
         treatPanel.setLayout(new GridLayout(6, 1));
 
-        pickLabel = new JLabel(("\"Congratulations! \n Please pick a treat from below!\""));
+        JLabel pickLabel = new JLabel(("Congratulations:D Please pick a treat!"));
         pickLabel.setBounds(100, 250, 20, 10);
         pickLabel.setFont(normalFont);
         pickLabel.setForeground(Color.black);
         treatPanel.add(pickLabel);
         container.add(treatPanel);
 
+        treatButtonsWhole();
+
+    }
+
+    private void treatButtonsWhole() {
         JButton choiceApple = new JButton("APPLE");
-        choiceButton(choiceApple);
-        choiceApple.addActionListener(treatHandler);
-        choiceApple.setActionCommand("apple");
+        treatButtonsHelper(choiceApple, "apple");
         treatPanel.add(choiceApple);
 
         JButton choiceBone = new JButton("BONE");
-        choiceButton(choiceBone);
-        choiceBone.addActionListener(treatHandler);
-        choiceBone.setActionCommand("bone");
+        treatButtonsHelper(choiceBone, "bone");
         treatPanel.add(choiceBone);
 
         JButton choiceCarrot = new JButton("CARROT");
-        choiceButton(choiceCarrot);
-        choiceCarrot.addActionListener(treatHandler);
-        choiceCarrot.setActionCommand("carrot");
+        treatButtonsHelper(choiceCarrot, "carrot");
         treatPanel.add(choiceCarrot);
 
         JButton choiceFish = new JButton("FISH");
-        choiceButton(choiceFish);
-        choiceFish.addActionListener(treatHandler);
-        choiceFish.setActionCommand("fish");
+        treatButtonsHelper(choiceFish, "fish");
         treatPanel.add(choiceFish);
 
         JButton choiceLeaf = new JButton("LEAF");
-        choiceButton(choiceLeaf);
-        choiceLeaf.addActionListener(treatHandler);
-        choiceLeaf.setActionCommand("leaf");
+        treatButtonsHelper(choiceLeaf, "leaf");
         treatPanel.add(choiceLeaf);
+    }
 
+    private void treatButtonsHelper(JButton choiceCarrot, String carrot) {
+        choiceButton(choiceCarrot);
+        choiceCarrot.addActionListener(treatHandler);
+        choiceCarrot.setActionCommand(carrot);
     }
 
     private void createChoiceScreen() {
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(200, 263, 450, 200);
-        choiceButtonPanel.setBackground(Color.red);
-        choiceButtonPanel.setLayout(new GridLayout(5, 1));
+        choiceButtonPanel.setBounds(200, 250, 400, 200);
+        choiceButtonPanel.setBackground(Color.lightGray);
+        choiceButtonPanel.setLayout(new GridLayout(6, 1));
 
         sideNotesLabelSaveGame = new JLabel();
         sideNotesLabelSaveGame.setBounds(475, 463, 20, 10);
@@ -301,6 +390,10 @@ public class MolarMassGame extends JFrame {
         choiceButtonPanel.add(sideNotesLabelSaveGame);
         container.add(choiceButtonPanel);
 
+        optionMenuButtons();
+    }
+
+    private void optionMenuButtons() {
         JButton choice1 = new JButton("YES");
         choices(choice1, choice1, "yes");
         choiceButtonPanel.add(choice1);
@@ -309,15 +402,18 @@ public class MolarMassGame extends JFrame {
         choices(choice2, choice2, "no");
         choiceButtonPanel.add(choice2);
 
-        JButton choice3 = new JButton("SAVE");
+        JButton choice3 = new JButton("SAVE GAME");
         choices(choice3, choice3, "save");
         choiceButtonPanel.add(choice3);
 
         JButton choice4 = new JButton("EXIT");
         choices(choice4, choice4, "exit");
         choiceButtonPanel.add(choice4);
-    }
 
+        JButton choice5 = new JButton("RETURN TO MAIN MENU");
+        choices(choice5, choice5, "return");
+        choiceButtonPanel.add(choice5);
+    }
 
 
     private void choices(JButton choice1, JButton choice12, String add) {
@@ -329,18 +425,18 @@ public class MolarMassGame extends JFrame {
 
     private void createPlayerPanel() {
         playerPanel = new JPanel();
-        playerPanel.setBounds(100, 15, 350, 50);
-        playerPanel.setBackground(Color.black);
+        playerPanel.setBounds(50, 15, 350, 50);
+        playerPanel.setBackground(Color.lightGray);
         playerPanel.setLayout(new GridLayout(1, 4));
         container.add(playerPanel);
 
         pointLabel = new JLabel("Satisfaction: ");
         pointLabel.setFont(normalFont);
-        pointLabel.setForeground(Color.white);
+        pointLabel.setForeground(Color.DARK_GRAY);
         playerPanel.add(pointLabel);
         pointLabelNum = new JLabel();
         pointLabelNum.setFont(normalFont);
-        pointLabelNum.setForeground(Color.white);
+        pointLabelNum.setForeground(Color.DARK_GRAY);
         playerPanel.add(pointLabelNum);
         playerSetUp();
     }
@@ -352,8 +448,8 @@ public class MolarMassGame extends JFrame {
     }
 
     public void showQuestion() {
-        mainTextArea.setText("Please enter the molecular weight of the molecule:\n"
-                + randomMolecule.getFormula());
+        mainTextArea.setText("        Please enter the molecular weight of the molecule:                        "
+                + "                      " + randomMolecule.getFormula());
     }
 
     private int animalPointsReturn() {
@@ -374,47 +470,6 @@ public class MolarMassGame extends JFrame {
         } else {
             return quokka;
         }
-    }
-
-
-
-
-    private void createAddMoleculeListPanel() {
-        moleculeListPanel = new JPanel();
-        moleculeListPanel.setBounds(200, 263, 450, 200);
-        moleculeListPanel.setBackground(Color.red);
-        moleculeListPanel.setLayout(new GridLayout(5, 1));
-
-        sideNotesLabel = new JLabel();
-        sideNotesLabel.setBounds(475, 463, 20, 10);
-        sideNotesLabel.setFont(normalFont);
-        sideNotesLabel.setForeground(Color.black);
-        moleculeListPanel.add(sideNotesLabel);
-        container.add(moleculeListPanel);
-
-        JButton choice1 = new JButton("EASY");
-        choiceButton(choice1);
-        choice1.addActionListener(moleculeListHandler);
-        choice1.setActionCommand("easy");
-        moleculeListPanel.add(choice1);
-
-        JButton choice2 = new JButton("MEDIUM");
-        choiceButton(choice2);
-        choice2.addActionListener(moleculeListHandler);
-        choice2.setActionCommand("medium");
-        moleculeListPanel.add(choice2);
-
-        JButton choice3 = new JButton("HARD");
-        choiceButton(choice3);
-        choice3.addActionListener(moleculeListHandler);
-        choice3.setActionCommand("hard");
-        moleculeListPanel.add(choice3);
-
-        JButton choice4 = new JButton("RETURN");
-        choiceButton(choice4);
-        choice4.addActionListener(moleculeListHandler);
-        choice4.setActionCommand("return");
-        moleculeListPanel.add(choice4);
     }
 
     private void newMainTextScreen() {
@@ -448,53 +503,94 @@ public class MolarMassGame extends JFrame {
             String titleScreen = event.getActionCommand();
             switch (titleScreen) {
                 case "start":
-                    visibility.toQuestions();
+                    visibility.startToInstructions();
+                    reset();
                     break;
                 case "quit":
                     visibility.goodbyeScreen();
-                    //titleScreenPanel.titleLabel.setText("Goodbye!");
+                    titleLabel.setText("Goodbye!");
                     break;
                 case "load":
                     visibility.toQuestions();
-                    try {
-                        jsonReaderAnimal.readAnimal();
-                        pointLabelNum.setText(animalPointsReturn() + " %");
-                    } catch (IOException e) {
-                        titleLabel.setText("Unable to read from file: " + JSON_STORE_ANIMALS);
-                    }
+                    reset();
+                    loadMolecules();
+                    loadGame();
                     break;
             }
+        }
+
+        private void reset() {
+            setUp();
+            remove(playerPanel);
+            createPlayerPanel();
+            revalidate();
+            repaint();
         }
     }
 
     private void saveGame() {
+
         animals.add(dog);
         animals.add(cat);
         animals.add(quokka);
+
         try {
-            jsonWriter.open();
-            jsonWriter.write(animals);
-            jsonWriter.close();
+            JsonWriter jsonWriterAnimal = new JsonWriter(JSON_STORE_ANIMALS);
+            jsonWriterAnimal.open();
+            jsonWriterAnimal.write(animals);
+            jsonWriterAnimal.close();
             System.out.println("Saved to " + JSON_STORE_ANIMALS);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE_ANIMALS);
         }
     }
 
-    private void saveMolecules() {
+    private void saveMoleculesToList() {
+        MoleculeEntered moleculeEntered = new MoleculeEntered(randomMolecule.getFormula(), Category.EASY);
+
+        if (!listNames.contains(moleculeEntered.getName())) {
+            moleculeList.addMolecule(moleculeEntered);
+            listNames.addElement(moleculeEntered.getName());
+
+        }
         try {
+            JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
             jsonWriter.open();
             jsonWriter.write(moleculeList);
             jsonWriter.close();
-            System.out.println("Saved " + moleculeList.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            //
         }
     }
 
+    private void loadGame() {
+//TODO json reader
+        try {
+            JsonReader jsonReaderAnimal = new JsonReader(JSON_STORE_ANIMALS);
+            List<Animals> read = jsonReaderAnimal.readAnimal();
+            dog = (Dog) read.get(0);
+            cat = (Cat) read.get(1);
+            quokka = (Quokka) read.get(2);
+            pointLabelNum.setText(animalPointsReturn() + " %");
+        } catch (IOException e) {
+            titleLabel.setText("Unable to read from file: " + JSON_STORE_ANIMALS);
+        }
+    }
+
+    private void loadMolecules() {
+        try {
+            JsonReader jsonReader = new JsonReader(JSON_STORE);
+            moleculeList = jsonReader.read();
+            List<MoleculeEntered> molecules = moleculeList.getMolecules();
+            for (int i = 0; i < molecules.size(); i++) {
+                listNames.addElement(molecules.get(i).getName());
+            }
+        } catch (IOException e) {
+            //
+        }
+    }
 
     public class TreatHandler implements ActionListener {
-
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -504,6 +600,7 @@ public class MolarMassGame extends JFrame {
                 a.reward(e.getActionCommand());
             }
             titleLabel.setFont(normalFont);
+            titlePanel.setBackground(Color.lightGray);
             titleLabel.setText("Do you want to add it to your molecule list?");
             pointLabelNum.setText(animalPointsReturn() + " %");
 
@@ -511,14 +608,13 @@ public class MolarMassGame extends JFrame {
     }
 
     public class ChoiceHandler implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             String quesHandler = e.getActionCommand();
             switch (quesHandler) {
                 case "yes":
-                    visibility.optionToSaveList();
-                    titleLabel.setText("Please select a level for your Molecule.");
+                    saveMoleculesToList();
+                    sideNotesLabelSaveGame.setText("Saved to My Molecule List!");
                     break;
                 case "no":
                     visibility.toQuestions();
@@ -533,36 +629,18 @@ public class MolarMassGame extends JFrame {
                     visibility.goodbyeScreen();
                     titleLabel.setText("Goodbye! Have a nice day :D!");
                     break;
-            }
-
-
-        }
-    }
-
-
-
-    public class MoleculeListHandler implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String mlHandler = e.getActionCommand();
-            switch (mlHandler) {
-
-                //TODO: separate each enum
-                case "easy":
-                    saveMolecules();
-                    break;
-                case "medium":
-                    //saveMolecules();
-                    break;
-                case "hard":
-                   // saveMolecules();
-                    break;
                 case "return":
-                    visibility.treatsToOptions();
-                    titleLabel.setFont(normalFont);
-                    titleLabel.setText("Do you want to add it to your molecule list?");
+                    visibility.showTitleScreen();
+                    returnHelper();
             }
+
+
+        }
+
+        private void returnHelper() {
+            titleLabel.setFont(titleFont);
+            titleLabel.setText("MOLAR MASS GAME");
         }
     }
+
 }

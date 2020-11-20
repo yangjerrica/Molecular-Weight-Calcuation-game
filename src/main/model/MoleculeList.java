@@ -33,7 +33,7 @@ public class MoleculeList implements Writable {
 
     // EFFECTS: returns an unmodifiable list of molecules in this molecule list
     public List<MoleculeEntered> getMolecules() {
-        return Collections.unmodifiableList(molecules);
+        return molecules;
     }
 
     // EFFECTS: returns number of molecules in this molecule list
