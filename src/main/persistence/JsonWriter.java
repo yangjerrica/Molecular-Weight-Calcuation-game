@@ -37,12 +37,6 @@ public class JsonWriter {
         saveToFile(json.toString(TAB));
     }
 
-//    // MODIFIES: this
-//    // EFFECTS: writes JSON representation of Animals to file
-//    public void write(Animals animal) {
-//        JSONObject json = animal.toJson();
-//        saveToFile(json.toString(TAB));
-//    }
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of a List of Animals to file

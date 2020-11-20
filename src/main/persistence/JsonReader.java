@@ -94,7 +94,7 @@ public class JsonReader {
                 cat.setPoints(point);
             } else if (animalType.equals("Dog")) {
                 dog.setPoints(point);
-            } else if (animalType.equals("Quokka")) {
+            } else {
                 quokka.setPoints(point);
             }
 

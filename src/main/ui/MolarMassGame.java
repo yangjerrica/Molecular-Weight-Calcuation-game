@@ -445,7 +445,7 @@ public class MolarMassGame extends JFrame {
         choices(choice1, choice1, "yes");
         choiceButtonPanel.add(choice1);
 
-        JButton choice2 = new JButton("NO");
+        JButton choice2 = new JButton("CONTINUE");
         choices(choice2, choice2, "no");
         choiceButtonPanel.add(choice2);
 
@@ -572,6 +572,7 @@ public class MolarMassGame extends JFrame {
                 case "load":
                     visibility.toQuestions();
                     reset();
+                    listNames.removeAllElements();
                     loadMolecules();
                     loadGame();
                     break;
@@ -630,7 +631,6 @@ public class MolarMassGame extends JFrame {
     //MODIFIES: this
     //EFFECTS: loads the game from the file
     private void loadGame() {
-//TODO json reader
         try {
             JsonReader jsonReaderAnimal = new JsonReader(JSON_STORE_ANIMALS);
             List<Animals> read = jsonReaderAnimal.readAnimal();
