@@ -56,12 +56,12 @@ public class JsonReaderTest extends JsonTest{
             Animals dog = new Dog();
             Animals cat = new Cat();
             Animals quokka = new Quokka();
-            reader.readAnimal();
-            checkAnimal("Dog", 0, dog);
+            List<Animals> read = reader.readAnimal();
+            checkAnimal("Dog", 0, read.get(0));
             assertEquals(0, dog.getPoints());
-            checkAnimal("Cat", 0, cat);
+            checkAnimal("Cat", 0, read.get(1));
             assertEquals(0, cat.getPoints());
-            checkAnimal("Quokka", 0, quokka);
+            checkAnimal("Quokka", 0, read.get(2));
             assertEquals(0, quokka.getPoints());
         } catch (IOException e) {
             fail("Couldn't read from file");

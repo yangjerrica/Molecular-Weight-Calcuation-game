@@ -27,15 +27,10 @@ public class JsonWriterTest extends JsonTest{
     void testWriterEmptyMoleculeList() {
         try {
             MoleculeList ml = new MoleculeList("My molecule list");
-            Animals dog = new Dog();
-            Animals cat = new Cat();
-            Animals quokka = new Quokka();
+
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyMoleculeList.json");
             writer.open();
             writer.write(ml);
-            writer.write(dog);
-            writer.write(cat);
-            writer.write(quokka);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyMoleculeList.json");

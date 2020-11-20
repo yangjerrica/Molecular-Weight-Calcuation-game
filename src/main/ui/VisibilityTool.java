@@ -19,6 +19,8 @@ public class VisibilityTool {
         molarMassGame.titlePanel.setVisible(true);
         molarMassGame.startButtonPanel.setVisible(true);
         molarMassGame.imagePanel.setVisible(false);
+        molarMassGame.saveButtonPanel.setVisible(false);
+        molarMassGame.quokkaPanel.setVisible(true);
 
         molarMassGame.mainTextPanel.setVisible(false);
         molarMassGame.choiceButtonPanel.setVisible(false);
@@ -32,7 +34,7 @@ public class VisibilityTool {
         molarMassGame.titlePanel.setVisible(true);
         molarMassGame.startButtonPanel.setVisible(false);
         molarMassGame.imagePanel.setVisible(false);
-        molarMassGame.saveButtonPanel.setVisible(false);
+        molarMassGame.quokkaPanel.setVisible(false);
 
         molarMassGame.mainTextPanel.setVisible(false);
         molarMassGame.choiceButtonPanel.setVisible(false);
@@ -47,6 +49,7 @@ public class VisibilityTool {
         molarMassGame.startButtonPanel.setVisible(false);
         molarMassGame.imagePanel.setVisible(false);
         molarMassGame.saveButtonPanel.setVisible(true);
+        molarMassGame.quokkaPanel.setVisible(false);
 
         molarMassGame.mainTextPanel.setVisible(true);
         molarMassGame.choiceButtonPanel.setVisible(false);
@@ -60,6 +63,7 @@ public class VisibilityTool {
         molarMassGame.startButtonPanel.setVisible(false);
         molarMassGame.imagePanel.setVisible(false);
         molarMassGame.saveButtonPanel.setVisible(true);
+        molarMassGame.quokkaPanel.setVisible(false);
 
         molarMassGame.mainTextPanel.setVisible(true);
         molarMassGame.choiceButtonPanel.setVisible(false);
@@ -73,7 +77,7 @@ public class VisibilityTool {
         molarMassGame.startButtonPanel.setVisible(false);
         molarMassGame.imagePanel.setVisible(false);
         molarMassGame.saveButtonPanel.setVisible(true);
-
+        molarMassGame.quokkaPanel.setVisible(false);
         molarMassGame.mainTextPanel.setVisible(false);
         molarMassGame.choiceButtonPanel.setVisible(true);
         molarMassGame.playerPanel.setVisible(true);
@@ -87,7 +91,7 @@ public class VisibilityTool {
         molarMassGame.startButtonPanel.setVisible(false);
         molarMassGame.imagePanel.setVisible(true);
         molarMassGame.saveButtonPanel.setVisible(false);
-
+        molarMassGame.quokkaPanel.setVisible(false);
         molarMassGame.mainTextPanel.setVisible(false);
         molarMassGame.choiceButtonPanel.setVisible(false);
         molarMassGame.playerPanel.setVisible(false);
