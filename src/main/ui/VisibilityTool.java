@@ -7,14 +7,18 @@ import ui.MolarMassGame;
 
 import javax.swing.*;
 
+//represents the visibility of each screen
 public class VisibilityTool {
 
     private MolarMassGame molarMassGame;
 
+    //EFFECTS: changes the visible panel for different phases
     public VisibilityTool(MolarMassGame molarMassGame) {
         this.molarMassGame = molarMassGame;
     }
 
+    //MODIFIES: this
+    //EFFECTS: shows the title screen only
     public void showTitleScreen() {
         molarMassGame.titlePanel.setVisible(true);
         molarMassGame.startButtonPanel.setVisible(true);
@@ -30,6 +34,8 @@ public class VisibilityTool {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: shows the goodbye screen only
     public void goodbyeScreen() {
         molarMassGame.titlePanel.setVisible(true);
         molarMassGame.startButtonPanel.setVisible(false);
@@ -44,6 +50,8 @@ public class VisibilityTool {
         molarMassGame.saveButtonPanel.setVisible(false);
     }
 
+    //MODIFIES: this
+    //EFFECTS: changes to the question screen
     public void toQuestions() {
         molarMassGame.titlePanel.setVisible(false);
         molarMassGame.startButtonPanel.setVisible(false);
@@ -58,6 +66,8 @@ public class VisibilityTool {
         molarMassGame.saveMoleculeListPanel.setVisible(false);
     }
 
+    //MODIFIES: this
+    //EFFECTS: shows the screen for the treats
     public void questionsToTreats() {
         molarMassGame.titlePanel.setVisible(false);
         molarMassGame.startButtonPanel.setVisible(false);
@@ -72,6 +82,8 @@ public class VisibilityTool {
         molarMassGame.saveMoleculeListPanel.setVisible(false);
     }
 
+    //MODIFIES: this
+    //EFFECTS: shows the option screen
     public void treatsToOptions() {
         molarMassGame.titlePanel.setVisible(true);
         molarMassGame.startButtonPanel.setVisible(false);
@@ -86,6 +98,8 @@ public class VisibilityTool {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: shows the instruction screen
     public void startToInstructions() {
         molarMassGame.titlePanel.setVisible(false);
         molarMassGame.startButtonPanel.setVisible(false);
@@ -100,6 +114,8 @@ public class VisibilityTool {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: changes to the saved molecule list screen
     public void selectSavedList() {
         molarMassGame.titlePanel.setVisible(false);
         molarMassGame.startButtonPanel.setVisible(false);

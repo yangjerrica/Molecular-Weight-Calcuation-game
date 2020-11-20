@@ -564,6 +564,7 @@ public class MolarMassGame extends JFrame {
                 case "start":
                     visibility.startToInstructions();
                     reset();
+                    listNames.removeAllElements();
                     break;
                 case "quit":
                     visibility.goodbyeScreen();

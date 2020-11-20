@@ -1,21 +1,7 @@
 {
-   "molecules": [
-      {
-         "name": "C5H8O4",
-         "category": "EASY"
-      },
-      {
-         "name": "SF6",
-         "category": "EASY"
-      },
-      {
-         "name": "C6H5CH2CH3",
-         "category": "EASY"
-      },
-      {
-         "name": "SO3",
-         "category": "EASY"
-      }
-   ],
+   "molecules": [{
+      "name": "CH3COOH",
+      "category": "EASY"
+   }],
    "name": "My Molecule List"
 }
