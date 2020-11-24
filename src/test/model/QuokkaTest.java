@@ -1,6 +1,5 @@
 package model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -50,5 +49,6 @@ public class QuokkaTest {
 
         assertEquals(100, testQuokka.getPoints());
         assertEquals("You have reached 100% satisfaction. Satisfied!", testQuokka.printPoints());
+        assertEquals("kee---kee---kee---", testQuokka.sound());
     }
 }

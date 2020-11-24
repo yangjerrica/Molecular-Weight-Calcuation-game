@@ -1,7 +1,13 @@
 {
-   "molecules": [{
-      "name": "CH3COOH",
-      "category": "EASY"
-   }],
+   "molecules": [
+      {
+         "name": "HCN",
+         "category": "EASY"
+      },
+      {
+         "name": "CH3CH2CH2CH2CH3",
+         "category": "EASY"
+      }
+   ],
    "name": "My Molecule List"
 }

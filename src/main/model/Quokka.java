@@ -17,7 +17,17 @@ public class Quokka extends Animals {
 
     }
 
-    //EFFECTS:returns the Json object
+    //EFFECTS: return the sound made by a quokka
+    @Override
+    public String sound() {
+        String sound = "kee---";
+        String soundMade = sound + sound + sound;
+        return soundMade;
+    }
+
+
+    //MODIFIES: this
+    //EFFECTS: returns the Json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

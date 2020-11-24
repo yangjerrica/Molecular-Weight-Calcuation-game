@@ -16,6 +16,15 @@ public class Dog extends Animals {
 
     }
 
+    //EFFECTS: return the sound made by a dog
+    @Override
+    public String sound() {
+        String sound = "woof! ";
+        String soundMade = sound + sound + sound;
+        return soundMade;
+    }
+
+    //MODIFIES: this
     //EFFECTS:returns the Json object
     @Override
     public JSONObject toJson() {

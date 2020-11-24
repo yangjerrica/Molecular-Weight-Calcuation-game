@@ -1,6 +1,5 @@
 package model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -52,5 +51,6 @@ public class DogTest {
 
         assertEquals(120, testDog.getPoints());
         assertEquals("You have reached 100% satisfaction. Satisfied!", testDog.printPoints());
+        assertEquals("woof! woof! woof! ", testDog.sound());
     }
 }

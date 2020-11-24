@@ -26,7 +26,7 @@ public class MolarMassGame extends JFrame {
     private static final String JSON_STORE_ANIMALS = "./data/animals.json";
 
 
-    private ui.VisibilityTool visibility = new VisibilityTool(this);
+    private VisibilityTool visibility = new VisibilityTool(this);
     private TitleScreenHandler titleScreenHandler = new TitleScreenHandler();
     private ChoiceHandler choiceHandler = new ChoiceHandler();
     private TreatHandler treatHandler = new TreatHandler();
@@ -301,23 +301,35 @@ public class MolarMassGame extends JFrame {
         success.setBounds(400, 280, 120, 30);
         mainTextPanel.add(success);
 
+        submitButton(currentMolecule, userText);
+        mainTextPanel.add(submitButton);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: creates a submit button
+    private void submitButton(String currentMolecule, JTextField userText) {
         submitButton = new JButton("SUBMIT");
         submitButton.setBounds(350, 280, 50, 30);
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String user = userText.getText();
-                if (user.equals(currentMolecule)) {
-                    success.setText("CONGRATULATIONS!");
-                    submitButton.setVisible(false);
-                    nextButton();
-                } else {
-                    success.setText("Wrong, please re-enter..");
+                int userNum = -1; //a default value to check
+                try {
+                    userNum = Integer.parseInt(user);
+                    if (user.equals(currentMolecule)) {
+                        success.setText("CONGRATULATIONS!");
+                        submitButton.setVisible(false);
+                        nextButton();
+                    } else {
+                        success.setText("Wrong, please re-enter..");
+                    }
+                } catch (NumberFormatException nfe) {
+                    success.setText("This is not a number!");
                 }
 
             }
         });
-        mainTextPanel.add(submitButton);
     }
 
     //MODIFIES: this
@@ -373,18 +385,25 @@ public class MolarMassGame extends JFrame {
     //EFFECTS:  creates a treat panel, with 5 buttons of different treats
     private void createTreatPanel() {
         treatPanel = new JPanel();
-        treatPanel.setBounds(175, 250, 430, 200);
+        treatPanel.setBounds(175, 250, 430, 250);
         treatPanel.setBackground(Color.lightGray);
-        treatPanel.setLayout(new GridLayout(6, 1));
+        treatPanel.setLayout(new GridLayout(7, 1));
 
         JLabel pickLabel = new JLabel(("Congratulations:D Please pick a treat!"));
+        Animals a = returnAnimal();
+        JLabel soundLabel = new JLabel("       " + a.sound() + "(thank you :)");
+        soundLabel.setFont(normalFont);
+        soundLabel.setForeground(Color.black);
         pickLabel.setBounds(100, 250, 20, 10);
         pickLabel.setFont(normalFont);
         pickLabel.setForeground(Color.black);
         treatPanel.add(pickLabel);
+        treatPanel.add(soundLabel);
         container.add(treatPanel);
 
         treatButtonsWhole();
+
+
 
     }
 
@@ -516,12 +535,12 @@ public class MolarMassGame extends JFrame {
     //MODIFIES: this
     //EFFECTS: returns the animal type that is eating the treats
     private Animals returnAnimal() {
-        if (dog.getPoints() < 100) {
-            return dog;
-        } else if (cat.getPoints() < 100) {
+        if (dog.getPoints() >= 100) {
             return cat;
-        } else {
+        } else if (cat.getPoints() >= 100) {
             return quokka;
+        } else {
+            return dog;
         }
     }
 
@@ -669,6 +688,7 @@ public class MolarMassGame extends JFrame {
             if (animalPointsReturn() < 100) {
                 Animals a = returnAnimal();
                 a.reward(e.getActionCommand());
+
             }
             titleLabel.setFont(normalFont);
             titlePanel.setBackground(Color.lightGray);

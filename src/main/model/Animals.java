@@ -61,8 +61,12 @@ public abstract class Animals implements Writable {
         return points;
     }
 
+    //EFFECTS: sets the points to the given point
     public void setPoints(int points) {
         this.points = points;
     }
+
+    //EFFECTS: returns the sounds that the animals make
+    public abstract String sound();
 
 }

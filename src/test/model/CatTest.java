@@ -50,5 +50,6 @@ public class CatTest {
 
         assertEquals(130, testAnimal.getPoints());
         assertEquals("You have reached 100% satisfaction. Satisfied!", testAnimal.printPoints());
+        assertEquals("meow~ meow! meow~", testAnimal.sound());
     }
 }

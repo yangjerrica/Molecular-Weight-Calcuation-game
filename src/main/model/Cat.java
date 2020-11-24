@@ -16,7 +16,15 @@ public class Cat extends Animals {
         getLeaf = 10;
     }
 
+    //EFFECTS: return the sound made by a cat
+    @Override
+    public String sound() {
+        String sound = "meow~ meow! meow~";
+        return sound;
+    }
 
+
+    //MODIFIES: this
     //EFFECTS:returns the Json object
     @Override
     public JSONObject toJson() {

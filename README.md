@@ -45,6 +45,14 @@ In the context of a molecule calculation game application:
 
 - As a user, I want to be able to load the molecules I added in the middle of the game.
 
+- As a user, I want to be able to save and load the whole game.
+
 - As a user, I want to be able to end the game in the middle of the game.
 
+
+## Phase 4 : Task 2:
+
+- Includes a type hierarchy: Animals as abstract class, with 3 subclasses: dogs, cats, and quokka.
+ 
+Overriding the abstract method: sound, showing the different sounds each animal makes.
 
