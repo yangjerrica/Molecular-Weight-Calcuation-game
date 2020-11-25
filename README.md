@@ -64,6 +64,7 @@ Overriding the abstract method: sound, showing the different sounds each animal 
  calculates the ones with the combination of atom (one letter only) and number (one number only), rather than the ones 
  with two letters atom or numbers larger than 9. 
  
- I would also refactor my main GUI (the MolarMassGame), for it has lots of functions tied together making it really hard 
- to read. If I were to redo it, I would give each panel a class and then add it to the gui container, so when I have to 
- change stuff, I don't need to spend a massive amount of time just to find the code.
+ I would also refactor my main GUI (the MolarMassGame class), for it has lots of functions tied together making it 
+ really hard to read. If I were to redo it, I would give each panel a class and then add it to the gui container,
+  so when I have to change stuff, I don't need to spend a massive amount of time just to find the code. 
+  It would make the code much cleaner and easier to edit. 

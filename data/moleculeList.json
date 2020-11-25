@@ -1,11 +1,19 @@
 {
    "molecules": [
       {
-         "name": "C2H5OH",
+         "name": "N2",
          "category": "EASY"
       },
       {
-         "name": "H2O",
+         "name": "O2",
+         "category": "EASY"
+      },
+      {
+         "name": "H2",
+         "category": "EASY"
+      },
+      {
+         "name": "CH3COOH",
          "category": "EASY"
       }
    ],

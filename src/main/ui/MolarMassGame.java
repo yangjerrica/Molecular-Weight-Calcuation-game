@@ -80,6 +80,7 @@ public class MolarMassGame extends JFrame {
 
     }
 
+    //MODIFIES: this
     //EFFECTS: set up a new game
     private void setUp() {
         dog = new Dog();
