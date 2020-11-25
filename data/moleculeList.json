@@ -1,11 +1,11 @@
 {
    "molecules": [
       {
-         "name": "HCN",
+         "name": "C2H5OH",
          "category": "EASY"
       },
       {
-         "name": "CH3CH2CH2CH2CH3",
+         "name": "H2O",
          "category": "EASY"
       }
    ],

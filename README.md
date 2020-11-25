@@ -56,3 +56,14 @@ In the context of a molecule calculation game application:
  
 Overriding the abstract method: sound, showing the different sounds each animal makes.
 
+
+## Phase 4 : Task3:
+
+- If I had more time to work on this project,  I would redesign my MolecularQuiz class and Molecule class. Though these
+ two are working just as I expected, it doesn't satisfy all different kinds of molecules. The Molecule class only 
+ calculates the ones with the combination of atom (one letter only) and number (one number only), rather than the ones 
+ with two letters atom or numbers larger than 9. 
+ 
+ I would also refactor my main GUI (the MolarMassGame), for it has lots of functions tied together making it really hard 
+ to read. If I were to redo it, I would give each panel a class and then add it to the gui container, so when I have to 
+ change stuff, I don't need to spend a massive amount of time just to find the code.
