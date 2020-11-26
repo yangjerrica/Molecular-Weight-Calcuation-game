@@ -27,7 +27,7 @@ exams and work on harder problems.
 - five treats (bone, fish, leaf, apple, carrot)
 
 
-##User Stories
+## User Stories
 
 In the context of a molecule calculation game application:
 
